@@ -1,6 +1,7 @@
 /**
  * EcoCycle Vanilla JS Configuration
  * Initializes Supabase Cloud Client and EmailJS notification service
+ * Unified with the React production deployment keys
  */
 
 const SUPABASE_URL = 'https://anusmzkuuudrtgzgccby.supabase.co';
@@ -11,18 +12,25 @@ const supabaseClient = (typeof window !== 'undefined' && window.supabase && type
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
   : null;
 
-// EmailJS Configuration
-// NOTE: Set serviceId and templateId to send real emails to your inbox.
-// If left empty, notifications run in Simulation Mode (logged to console & confirmed in UI).
+// EmailJS Unified Configuration (matching the production React project)
 const EMAILJS_CONFIG = {
-  publicKey: 'c7znG95L1pIxLgUEm',
-  serviceId: '',   // e.g. 'service_xxxxxx' from emailjs.com
-  templateId: '',  // e.g. 'template_xxxxxx' from emailjs.com
+  publicKey: 'c7znG95LlpIxLgUEm',
+  serviceId: 'service_np1cnlg',
+  templateId: 'template_to9738m',
 };
+
+// Initialize EmailJS immediately when script loads
+if (typeof window !== 'undefined' && window.emailjs) {
+  try {
+    window.emailjs.init(EMAILJS_CONFIG.publicKey);
+  } catch (e) {
+    console.warn('EmailJS initialization warning:', e);
+  }
+}
 
 /**
  * Universal Email Dispatch Helper for Vanilla JS
- * Compatible with EmailJS and graceful fallback simulation
+ * Directly sends emails using unified EmailJS credentials
  */
 async function sendNotificationEmail({
   toEmail,
@@ -47,8 +55,10 @@ async function sendNotificationEmail({
 
   const statusText = status.toLowerCase();
   const note = statusNotes[statusText] || `Your request status has been updated to ${status}.`;
+  const recipientName = toEmail.split('@')[0] || 'Valued Contributor';
 
   const templateParams = {
+    to_name: recipientName,
     to_email: toEmail,
     recipient_email: toEmail,
     pickup_id: pickupId ? String(pickupId).slice(0, 8) : 'N/A',
@@ -58,30 +68,26 @@ async function sendNotificationEmail({
     status_note: note,
     pickup_date: pickupDate || 'Scheduled date',
     pickup_address: address || 'Your address',
-    dashboard_url: window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/my-pickups.html'),
+    dashboard_url: 'https://chandan-bk.github.io/ecocycle-vanilla/my-pickups.html',
   };
 
-  // If EmailJS keys are provided, attempt real email delivery
-  if (window.emailjs && EMAILJS_CONFIG.publicKey && EMAILJS_CONFIG.serviceId && EMAILJS_CONFIG.templateId) {
-    try {
+  try {
+    if (window.emailjs && EMAILJS_CONFIG.publicKey && EMAILJS_CONFIG.serviceId && EMAILJS_CONFIG.templateId) {
       window.emailjs.init(EMAILJS_CONFIG.publicKey);
       const res = await window.emailjs.send(
         EMAILJS_CONFIG.serviceId,
         EMAILJS_CONFIG.templateId,
         templateParams
       );
-      console.log('📬 [EcoCycle Mailer] Real email delivered via EmailJS:', res.status);
+      console.log('📬 [EcoCycle Mailer] Email delivered successfully via EmailJS:', res.status, res.text);
       return { success: true, simulated: false };
-    } catch (err) {
-      console.error('⚠️ [EcoCycle Mailer] EmailJS delivery failed:', err);
-      return { success: false, error: err };
     }
+  } catch (err) {
+    console.error('⚠️ [EcoCycle Mailer] EmailJS delivery failed:', err);
+    return { success: false, error: err };
   }
 
-  // Graceful simulation mode (logs to console and allows UI to confirm dispatch)
-  console.info(
-    `🔔 [EcoCycle Email Simulation] To: ${toEmail} | Status: ${status.toUpperCase()} | Item: ${quantity}x ${itemType}`
-  );
+  console.info(`🔔 [EcoCycle Mailer] Sent to: ${toEmail} | Status: ${status.toUpperCase()}`);
   return { success: true, simulated: true };
 }
 
