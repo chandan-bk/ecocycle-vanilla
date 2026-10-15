@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Pickups - EcoCycle</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">♻️</div>
+        <div class="brand-text">Eco<span>Cycle</span></div>
+      </a>
+
+      <button id="menu-toggle" class="menu-toggle">☰</button>
+
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="locator.html">Recycler Locator</a></li>
+        <li><a href="schedule.html">Schedule Pickup</a></li>
+        <li id="nav-mypickups-link"><a href="my-pickups.html" class="active">My Pickups</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="awareness.html">Awareness & Quiz</a></li>
+        <li id="nav-admin-link" style="display:none;"><a href="admin.html" style="color:var(--accent);">Admin Panel</a></li>
+      </ul>
+
+      <div id="nav-auth-container" class="nav-auth"></div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main style="padding: 40px 0;">
+    <div class="container">
+      
+      <!-- Page Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px;">
+        <div>
+          <h1>My E-Waste Pickups</h1>
+          <p style="margin-top: 5px;">Track your scheduled doorstep collections and recycling status.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button id="refresh-btn" class="btn btn-outline btn-sm">🔄 Refresh</button>
+          <a href="schedule.html" class="btn btn-primary btn-sm">+ New Pickup</a>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 25px; border-bottom: 1px solid var(--slate-200); padding-bottom: 15px;">
+        <button class="btn btn-sm btn-outline tab-btn active" data-status="all">All Requests</button>
+        <button class="btn btn-sm btn-outline tab-btn" data-status="pending">Pending</button>
+        <button class="btn btn-sm btn-outline tab-btn" data-status="scheduled">Scheduled</button>
+        <button class="btn btn-sm btn-outline tab-btn" data-status="collected">Collected</button>
+        <button class="btn btn-sm btn-outline tab-btn" data-status="cancelled">Cancelled</button>
+      </div>
+
+      <!-- Pickups Grid -->
+      <div id="pickups-grid" class="grid grid-3">
+        <p style="color: var(--slate-400);">Loading your pickups...</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div><strong>EcoCycle</strong> — E-Waste Pickup & Recycler Locator</div>
+      <div>Track Your Environmental Contributions</div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/my-pickups.js"></script>
+</body>
+</html>

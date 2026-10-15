@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoCycle - E-Waste Pickup & Recycler Locator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Supabase CDN (Official Browser Build) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">♻️</div>
+        <div class="brand-text">Eco<span>Cycle</span></div>
+      </a>
+
+      <button id="menu-toggle" class="menu-toggle">☰</button>
+
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="locator.html">Recycler Locator</a></li>
+        <li><a href="schedule.html">Schedule Pickup</a></li>
+        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html">My Pickups</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="awareness.html">Awareness & Quiz</a></li>
+        <li id="nav-admin-link" style="display:none;"><a href="admin.html" style="color:var(--accent);">Admin Panel</a></li>
+      </ul>
+
+      <div id="nav-auth-container" class="nav-auth">
+        <!-- Injected dynamically by auth.js -->
+        <a href="login.html" class="btn btn-primary btn-sm">Login / Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section style="padding: 70px 0; background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%); border-bottom: 1px solid var(--slate-200); text-align: center;">
+      <div class="container" style="max-width: 800px;">
+        <span style="display:inline-block; padding: 6px 14px; background: #dcfce7; color: #166534; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; border-radius: 9999px; margin-bottom: 18px;">
+          🌱 Smart E-Waste Management & Recovery
+        </span>
+        <h1 style="margin-bottom: 18px; font-size: 3rem; letter-spacing: -0.5px;">
+          Give Your Old Electronics A <span style="color: var(--primary); text-decoration: underline;">Second Life</span>.
+        </h1>
+        <p style="font-size: 1.15rem; margin-bottom: 30px; line-height: 1.7;">
+          Schedule free doorstep e-waste pickups in Mandya and Bangalore or locate verified collection centers near you. Zero landfill waste, 100% compliant.
+        </p>
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <a href="schedule.html" class="btn btn-primary" style="padding: 14px 28px; font-size: 1rem;">
+            📅 Schedule Free Pickup
+          </a>
+          <a href="locator.html" class="btn btn-outline" style="padding: 14px 28px; font-size: 1rem;">
+            📍 Find Collection Centers
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 Steps -->
+    <section style="padding: 70px 0;">
+      <div class="container">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto 50px;">
+          <h2>How EcoCycle Works</h2>
+          <p>Responsible recycling made transparent in three simple steps.</p>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <div style="width: 48px; height: 48px; background: var(--primary-light); color: var(--primary-dark); font-weight: 900; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 20px;">
+              1
+            </div>
+            <h3>Book A Pickup</h3>
+            <p style="margin-top: 10px; font-size: 0.95rem;">
+              Select obsolete items—phones, laptops, cables, or appliances—and choose a convenient collection date.
+            </p>
+          </div>
+
+          <div class="card">
+            <div style="width: 48px; height: 48px; background: var(--primary-light); color: var(--primary-dark); font-weight: 900; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 20px;">
+              2
+            </div>
+            <h3>Verified Collection</h3>
+            <p style="margin-top: 10px; font-size: 0.95rem;">
+              Our authorized team collects your gadgets right from your doorstep or at our local drop-off centers.
+            </p>
+          </div>
+
+          <div class="card">
+            <div style="width: 48px; height: 48px; background: var(--primary-light); color: var(--primary-dark); font-weight: 900; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 20px;">
+              3
+            </div>
+            <h3>Material Recovery</h3>
+            <p style="margin-top: 10px; font-size: 0.95rem;">
+              Electronics are dismantled safely, extracting precious metals like gold and copper while preventing carbon emissions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Teaser Banner -->
+    <section style="padding: 60px 0; background: var(--slate-900); color: white; border-radius: var(--radius-xl); margin: 0 20px;">
+      <div class="container" style="text-align: center; max-width: 700px;">
+        <span style="color: #4ade80; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
+          Environmental Impact
+        </span>
+        <h2 style="color: white; margin: 15px 0 20px; font-size: 2.2rem;">Every Device Recycled Prevents ~15 kg CO₂</h2>
+        <p style="color: var(--slate-200); margin-bottom: 30px;">
+          Recycling secondary metals requires up to 80% less energy than mining raw ores. Explore live community statistics and charts.
+        </p>
+        <a href="impact.html" class="btn btn-primary" style="padding: 14px 28px;">
+          📊 View Live Environmental Impact
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div>
+        <strong>EcoCycle</strong> — E-Waste Pickup & Recycler Locator
+      </div>
+      <div>
+        Pure Web Architecture (HTML5, CSS3, Vanilla JS)
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

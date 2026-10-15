@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recycler Locator - EcoCycle</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Leaflet CSS & JS via Official CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">♻️</div>
+        <div class="brand-text">Eco<span>Cycle</span></div>
+      </a>
+
+      <button id="menu-toggle" class="menu-toggle">☰</button>
+
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="locator.html" class="active">Recycler Locator</a></li>
+        <li><a href="schedule.html">Schedule Pickup</a></li>
+        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html">My Pickups</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="awareness.html">Awareness & Quiz</a></li>
+        <li id="nav-admin-link" style="display:none;"><a href="admin.html" style="color:var(--accent);">Admin Panel</a></li>
+      </ul>
+
+      <div id="nav-auth-container" class="nav-auth"></div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main style="padding: 40px 0;">
+    <div class="container">
+      
+      <!-- Page Header -->
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 15px; margin-bottom: 25px;">
+        <div>
+          <h1>Recycler & Collection Center Locator</h1>
+          <p style="margin-top: 5px;">Find authorized e-waste drop-off stations across Mandya and Bangalore.</p>
+        </div>
+        <button id="refresh-btn" class="btn btn-outline btn-sm">🔄 Refresh Locations</button>
+      </div>
+
+      <!-- Filters Bar -->
+      <div class="card" style="padding: 16px 20px; margin-bottom: 25px;">
+        <div class="grid grid-3" style="gap: 15px;">
+          
+          <!-- Search -->
+          <div>
+            <label class="form-label">Search Facility</label>
+            <input type="text" id="search-input" class="form-input" placeholder="Search by name or street...">
+          </div>
+
+          <!-- City Filter -->
+          <div>
+            <label class="form-label">Select City / Area</label>
+            <select id="city-select" class="form-select">
+              <option value="Mandya" selected>City: Mandya</option>
+              <option value="Bangalore">City: Bangalore</option>
+              <option value="All">All Cities</option>
+            </select>
+          </div>
+
+          <!-- Accepted Items Filter -->
+          <div>
+            <label class="form-label">Filter by Accepted Item</label>
+            <select id="item-select" class="form-select">
+              <option value="All">Accepts: All Electronics</option>
+              <option value="Smartphones">Smartphones & Tablets</option>
+              <option value="Laptops">Laptops & Notebooks</option>
+              <option value="Batteries">Batteries & Power Supplies</option>
+              <option value="Appliances">Home Appliances</option>
+              <option value="Cables">Cables & Chargers</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Map + Side List -->
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: start;" class="map-layout">
+        
+        <!-- Leaflet Map Container -->
+        <div style="position: relative;">
+          <div id="map"></div>
+        </div>
+
+        <!-- Centers List Sidebar -->
+        <div class="card" style="padding: 20px; max-height: 580px; overflow-y: auto;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h3 style="font-size: 1.05rem;">Centers Found (<span id="center-count">0</span>)</h3>
+            <span style="font-size: 0.75rem; color: var(--slate-500);">Click card to locate</span>
+          </div>
+
+          <div id="centers-list" style="display: flex; flex-direction: column; gap: 12px;">
+            <p style="color: var(--slate-400); font-size: 0.9rem;">Loading collection centers...</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div><strong>EcoCycle</strong> — E-Waste Pickup & Recycler Locator</div>
+      <div>Powered by Leaflet & OpenStreetMap</div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/locator.js"></script>
+</body>
+</html>

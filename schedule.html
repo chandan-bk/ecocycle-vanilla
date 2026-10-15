@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schedule Doorstep Pickup - EcoCycle</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">♻️</div>
+        <div class="brand-text">Eco<span>Cycle</span></div>
+      </a>
+
+      <button id="menu-toggle" class="menu-toggle">☰</button>
+
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="locator.html">Recycler Locator</a></li>
+        <li><a href="schedule.html" class="active">Schedule Pickup</a></li>
+        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html">My Pickups</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="awareness.html">Awareness & Quiz</a></li>
+        <li id="nav-admin-link" style="display:none;"><a href="admin.html" style="color:var(--accent);">Admin Panel</a></li>
+      </ul>
+
+      <div id="nav-auth-container" class="nav-auth"></div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main style="padding: 50px 0;">
+    <div class="container" style="max-width: 650px;">
+      
+      <!-- Page Header -->
+      <div style="text-align: center; margin-bottom: 30px;">
+        <div style="width: 56px; height: 56px; background: var(--primary-light); color: var(--primary); font-size: 1.6rem; border-radius: var(--radius-lg); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+          📅
+        </div>
+        <h1>Schedule Doorstep Pickup</h1>
+        <p style="margin-top: 6px;">We collect discarded electronics directly from your home and route them to certified recyclers.</p>
+      </div>
+
+      <!-- Feedback Banner -->
+      <div id="alert-banner" style="display: none;"></div>
+
+      <!-- Pickup Form Card -->
+      <div id="form-card" class="card">
+        <form id="pickup-form">
+          
+          <!-- Category -->
+          <div class="form-group">
+            <label class="form-label" for="item-type">E-Waste Category</label>
+            <select id="item-type" class="form-select" required>
+              <option value="Smartphones & Tablets">Smartphones & Tablets</option>
+              <option value="Laptops & Notebooks">Laptops & Notebooks</option>
+              <option value="Desktop PCs & Monitors">Desktop PCs & Monitors</option>
+              <option value="Cables, Chargers & Adapters">Cables, Chargers & Adapters</option>
+              <option value="Li-ion & Rechargeable Batteries">Li-ion & Rechargeable Batteries</option>
+              <option value="Small Home Appliances (Microwaves, Kettles)">Small Home Appliances (Microwaves, Kettles)</option>
+              <option value="Printers, Scanners & Cartridges">Printers, Scanners & Cartridges</option>
+              <option value="Televisions & Displays">Televisions & Displays</option>
+              <option value="Audio Equipment & Headphones">Audio Equipment & Headphones</option>
+              <option value="Other Electronic Waste">Other Electronic Waste</option>
+            </select>
+          </div>
+
+          <!-- Quantity -->
+          <div class="form-group">
+            <label class="form-label" for="quantity">Quantity (Number of Units)</label>
+            <input type="number" id="quantity" class="form-input" min="1" max="100" value="1" required>
+          </div>
+
+          <!-- Pickup Date -->
+          <div class="form-group">
+            <label class="form-label" for="pickup-date">Preferred Pickup Date</label>
+            <input type="date" id="pickup-date" class="form-input" required>
+            <small style="color: var(--slate-500); font-size: 0.75rem; margin-top: 4px; display: block;">
+              Pickups must be scheduled at least 1 day in advance.
+            </small>
+          </div>
+
+          <!-- Address -->
+          <div class="form-group">
+            <label class="form-label" for="address">Doorstep Address</label>
+            <textarea id="address" class="form-textarea" rows="3" placeholder="Door No, Street/Colony, Landmark, City & PIN Code" required></textarea>
+          </div>
+
+          <!-- Eco Note -->
+          <div style="background: var(--primary-light); padding: 12px 16px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--primary-dark); margin-bottom: 24px;">
+            💡 <strong>Privacy Reminder:</strong> Please back up files and factory reset devices with memory before handing them over for recycling.
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 1rem;">
+            Confirm & Schedule Pickup
+          </button>
+
+        </form>
+      </div>
+
+      <!-- Success Confirmation Modal -->
+      <div id="success-modal" class="card" style="display: none; text-align: center; padding: 40px;">
+        <div style="width: 64px; height: 64px; background: #dcfce7; color: #16a34a; font-size: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+          ✓
+        </div>
+        <h2>Pickup Scheduled Successfully!</h2>
+        <p style="margin: 12px 0 25px;" id="success-summary"></p>
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <a href="my-pickups.html" class="btn btn-primary">View in My Pickups</a>
+          <button id="book-another-btn" class="btn btn-outline">Book Another</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div><strong>EcoCycle</strong> — Doorstep E-Waste Collection</div>
+      <div>Zero Landfill Guarantee</div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/schedule.js"></script>
+</body>
+</html>

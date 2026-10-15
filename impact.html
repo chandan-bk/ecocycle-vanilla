@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Environmental Impact - EcoCycle</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Chart.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">♻️</div>
+        <div class="brand-text">Eco<span>Cycle</span></div>
+      </a>
+
+      <button id="menu-toggle" class="menu-toggle">☰</button>
+
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="locator.html">Recycler Locator</a></li>
+        <li><a href="schedule.html">Schedule Pickup</a></li>
+        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html">My Pickups</a></li>
+        <li><a href="impact.html" class="active">Impact</a></li>
+        <li><a href="awareness.html">Awareness & Quiz</a></li>
+        <li id="nav-admin-link" style="display:none;"><a href="admin.html" style="color:var(--accent);">Admin Panel</a></li>
+      </ul>
+
+      <div id="nav-auth-container" class="nav-auth"></div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main style="padding: 40px 0;">
+    <div class="container">
+      
+      <!-- Page Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;">
+        <div>
+          <h1>Real-Time Environmental Impact</h1>
+          <p style="margin-top: 5px;">Tracking carbon reduction and electronic materials recovered from landfills.</p>
+        </div>
+        <button id="refresh-stats-btn" class="btn btn-outline btn-sm">🔄 Refresh Analytics</button>
+      </div>
+
+      <!-- KPI Cards Row -->
+      <div class="grid grid-4" style="margin-bottom: 30px;">
+        
+        <div class="card" style="padding: 22px;">
+          <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--slate-500); margin-bottom: 8px;">
+            Total Pickups
+          </div>
+          <div id="kpi-pickups" style="font-size: 2.2rem; font-weight: 900; color: var(--slate-900);">--</div>
+          <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 4px;">Collection requests logged</div>
+        </div>
+
+        <div class="card" style="padding: 22px;">
+          <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--slate-500); margin-bottom: 8px;">
+            Devices Recycled
+          </div>
+          <div id="kpi-items" style="font-size: 2.2rem; font-weight: 900; color: var(--primary);">--</div>
+          <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 4px;">Diverted from city landfills</div>
+        </div>
+
+        <div class="card" style="padding: 22px;">
+          <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--slate-500); margin-bottom: 8px;">
+            CO₂ Prevented
+          </div>
+          <div id="kpi-co2" style="font-size: 2.2rem; font-weight: 900; color: var(--secondary);">--</div>
+          <div id="kpi-tonnes" style="font-size: 0.8rem; color: var(--secondary); font-weight: 600; margin-top: 4px;">-- Tonnes CO₂e</div>
+        </div>
+
+        <div class="card" style="padding: 22px;">
+          <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--slate-500); margin-bottom: 8px;">
+            Tree Absorption Eq.
+          </div>
+          <div id="kpi-trees" style="font-size: 2.2rem; font-weight: 900; color: var(--accent);">--</div>
+          <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 4px;">Mature urban tree-years</div>
+        </div>
+
+      </div>
+
+      <!-- Scientific Assumption Box -->
+      <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius-xl); padding: 24px; margin-bottom: 35px; display: flex; gap: 16px; align-items: flex-start;">
+        <div style="font-size: 1.6rem;">🔬</div>
+        <div style="font-size: 0.9rem; line-height: 1.6; color: #14532d;">
+          <strong style="display: block; font-size: 1rem; margin-bottom: 4px; color: #166534;">
+            Calculation Methodology & Assumptions:
+          </strong>
+          According to benchmark studies by the <em>Global E-Waste Monitor (UNEP/ITU)</em> and the <em>United States EPA WARM Model</em>, safe material extraction from e-waste prevents an estimated average of <strong>15.0 kg of CO₂ equivalent emissions per electronic unit</strong> compared to raw mining and virgin refining. Equivalent tree absorption is calculated based on the standard benchmark of <strong>22.0 kg CO₂ absorbed per urban tree annually</strong>.
+        </div>
+      </div>
+
+      <!-- Chart.js Visuals -->
+      <div class="grid grid-2" style="gap: 30px;">
+        
+        <!-- Bar Chart -->
+        <div class="card">
+          <h3 style="margin-bottom: 6px;">Recycled Electronics by Category</h3>
+          <p style="font-size: 0.85rem; margin-bottom: 20px;">Units recovered by equipment classification</p>
+          <div style="position: relative; height: 320px;">
+            <canvas id="categoryChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Doughnut Chart -->
+        <div class="card">
+          <h3 style="margin-bottom: 6px;">Pickup Pipeline Status</h3>
+          <p style="font-size: 0.85rem; margin-bottom: 20px;">Operational workflow of all collections</p>
+          <div style="position: relative; height: 320px;">
+            <canvas id="statusChart"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div><strong>EcoCycle</strong> — Environmental Impact Dashboard</div>
+      <div>Powered by Chart.js (Pure Web Canvas)</div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/impact.js"></script>
+</body>
+</html>

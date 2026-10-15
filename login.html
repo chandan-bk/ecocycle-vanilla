@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Register - EcoCycle</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">♻️</div>
+        <div class="brand-text">Eco<span>Cycle</span></div>
+      </a>
+
+      <button id="menu-toggle" class="menu-toggle">☰</button>
+
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="locator.html">Recycler Locator</a></li>
+        <li><a href="schedule.html">Schedule Pickup</a></li>
+        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html">My Pickups</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="awareness.html">Awareness & Quiz</a></li>
+        <li id="nav-admin-link" style="display:none;"><a href="admin.html" style="color:var(--accent);">Admin Panel</a></li>
+      </ul>
+
+      <div id="nav-auth-container" class="nav-auth"></div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main style="padding: 50px 0;">
+    <div class="container" style="max-width: 480px;">
+      
+      <div class="card" style="box-shadow: var(--shadow-lg);">
+        
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 24px;">
+          <div style="width: 56px; height: 56px; background: var(--primary-light); color: var(--primary-dark); border-radius: var(--radius-lg); display: inline-flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 12px;">
+            <span id="auth-header-icon">🔐</span>
+          </div>
+          <h1 id="auth-title" style="font-size: 1.7rem;">Welcome Back</h1>
+          <p id="auth-subtitle" style="font-size: 0.88rem; margin-top: 4px;">Log in to schedule doorstep collections and track e-waste recycling.</p>
+        </div>
+
+        <!-- Mode Switch Tabs -->
+        <div style="display: flex; background: var(--slate-100); padding: 4px; border-radius: var(--radius-md); margin-bottom: 24px;">
+          <button id="tab-login" class="btn btn-sm" style="flex:1; background:white; color:var(--slate-800); border-radius:var(--radius-sm); box-shadow:var(--shadow-sm);">Sign In</button>
+          <button id="tab-register" class="btn btn-sm" style="flex:1; background:transparent; color:var(--slate-600); border-radius:var(--radius-sm);">Create Account</button>
+        </div>
+
+        <!-- Alert Notification Box -->
+        <div id="auth-alert" style="display: none;" class="alert"></div>
+
+        <!-- Auth Form -->
+        <form id="auth-form">
+          
+          <!-- Email Input -->
+          <div class="form-group">
+            <label class="form-label" for="auth-email">Email Address</label>
+            <input type="email" id="auth-email" class="form-input" required placeholder="you@student.edu">
+          </div>
+
+          <!-- Password Input -->
+          <div class="form-group">
+            <label class="form-label" for="auth-password">Password</label>
+            <input type="password" id="auth-password" class="form-input" required minlength="6" placeholder="••••••••">
+            <span style="font-size: 0.72rem; color: var(--slate-400); margin-top: 4px; display: block;">Minimum 6 characters</span>
+          </div>
+
+          <!-- Registration Role Selection (Hidden during Login) -->
+          <div id="register-role-section" style="display: none; padding-top: 14px; border-top: 1px solid var(--slate-200); margin-bottom: 20px;">
+            <label class="form-label">Account Role</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+              <button type="button" id="role-user-btn" class="btn btn-sm" style="background:var(--primary); color:white;">Regular User</button>
+              <button type="button" id="role-admin-btn" class="btn btn-sm btn-outline">Admin / Facility</button>
+            </div>
+
+            <!-- Admin Passcode Field (Shown only when Admin role selected) -->
+            <div id="admin-passcode-field" style="display: none; background: #fffbeb; border: 1px solid #fde68a; padding: 12px; border-radius: var(--radius-md); margin-top: 10px;">
+              <label class="form-label" style="color: #92400e;" for="admin-passcode">🛡️ Demo Admin Passcode</label>
+              <input type="text" id="admin-passcode" class="form-input" placeholder="Enter ECOADMIN2025" style="border-color:#fde68a;">
+              <span style="font-size: 0.75rem; color: #b45309; display: block; margin-top: 6px;">
+                Use demo key <strong style="font-family: monospace; background: #fef3c7; padding: 2px 6px; border-radius: 4px;">ECOADMIN2025</strong> for evaluator demonstration.
+              </span>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="auth-submit-btn" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 1rem;">
+            Sign In to EcoCycle
+          </button>
+        </form>
+
+        <!-- Switch Link -->
+        <div style="text-align: center; margin-top: 20px; font-size: 0.85rem; color: var(--slate-500);">
+          <span id="switch-prompt">Don't have an account yet?</span>
+          <button type="button" id="switch-mode-btn" style="background:none; border:none; color:var(--primary); font-weight:700; cursor:pointer; margin-left:4px;">
+            Create Account
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div><strong>EcoCycle</strong> — E-Waste Pickup & Recycler Locator</div>
+      <div>Sustainable Waste Management Portal</div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

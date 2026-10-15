@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awareness & Quiz - EcoCycle</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">♻️</div>
+        <div class="brand-text">Eco<span>Cycle</span></div>
+      </a>
+
+      <button id="menu-toggle" class="menu-toggle">☰</button>
+
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="locator.html">Recycler Locator</a></li>
+        <li><a href="schedule.html">Schedule Pickup</a></li>
+        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html">My Pickups</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="awareness.html" class="active">Awareness & Quiz</a></li>
+        <li id="nav-admin-link" style="display:none;"><a href="admin.html" style="color:var(--accent);">Admin Panel</a></li>
+      </ul>
+
+      <div id="nav-auth-container" class="nav-auth"></div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main style="padding: 40px 0;">
+    <div class="container" style="max-width: 900px;">
+      
+      <!-- Page Header -->
+      <div style="text-align: center; margin-bottom: 40px;">
+        <span style="display:inline-block; padding: 4px 12px; background: #dcfce7; color: #166534; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; border-radius: 9999px; margin-bottom: 12px;">
+          📚 Educational Literacy Guide
+        </span>
+        <h1>What Counts As E-Waste & Why It Matters</h1>
+        <p style="margin-top: 8px; font-size: 1.05rem;">Electronics represent only 2% of garbage volume, but 70% of toxic landfill hazards.</p>
+      </div>
+
+      <!-- What Counts vs Hazards -->
+      <div class="grid grid-2" style="margin-bottom: 40px;">
+        
+        <div class="card" style="background: #f0fdf4; border-color: #bbf7d0;">
+          <h3 style="color: #14532d; margin-bottom: 15px;">✓ What Counts As E-Waste?</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: #166534;">
+            <li><strong>• IT & Telecom:</strong> Laptops, PCs, monitors, smartphones, chargers, cables.</li>
+            <li><strong>• Consumer Electronics:</strong> TVs, stereos, gaming consoles, headphones.</li>
+            <li><strong>• Small Appliances:</strong> Microwaves, kettles, toasters, power tools.</li>
+            <li><strong>• Power Supplies:</strong> Lithium-ion battery packs, power banks, UPS units.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="background: #fef2f2; border-color: #fecaca;">
+          <h3 style="color: #7f1d1d; margin-bottom: 15px;">⚠️ Toxic Substances Inside</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: #991b1b;">
+            <li><strong>• Lead (Pb):</strong> Found in solder and CRT tubes. Known neurotoxin affecting brain health.</li>
+            <li><strong>• Mercury (Hg):</strong> In display backlights and switches. Leaches into drinking water.</li>
+            <li><strong>• Cadmium (Cd):</strong> In chip resistors and older rechargeable cells. Harms kidney and bone structure.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- 5-Question Quiz Section -->
+      <div class="card" style="padding: 35px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--slate-100); padding-bottom: 15px; margin-bottom: 25px;">
+          <div>
+            <span style="font-size: 0.75rem; font-weight: 800; color: var(--primary); text-transform: uppercase;">Interactive Challenge</span>
+            <h2 style="font-size: 1.6rem; margin-top: 4px;">The 5-Question E-Waste Quiz</h2>
+          </div>
+          <button id="reset-quiz-btn" class="btn btn-outline btn-sm" style="display: none;">Retake Quiz</button>
+        </div>
+
+        <div id="quiz-score-banner" style="display: none; padding: 20px; border-radius: var(--radius-lg); text-align: center; margin-bottom: 25px;"></div>
+
+        <form id="quiz-form">
+          <div id="quiz-questions-container" style="display: flex; flex-direction: column; gap: 25px;"></div>
+
+          <div style="text-align: center; margin-top: 30px;">
+            <button type="submit" id="submit-quiz-btn" class="btn btn-primary" style="padding: 12px 28px;">
+              Submit Answers & View Score
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div><strong>EcoCycle</strong> — E-Waste Awareness & Literacy</div>
+      <div>Test Your Knowledge & Champion Sustainability</div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/awareness.js"></script>
+</body>
+</html>
