@@ -3,32 +3,8 @@
  * Manages Supabase Auth, role selection, passcode validation, and page routing.
  */
 
-document.addEventListener('DOMContentLoaded', async () => {
-  const supabase = window.ecocycle?.supabase;
-  if (!supabase) {
-    showAlert('Supabase client could not be initialized. Please check network connection.', 'error');
-    return;
-  }
-
-  // If already logged in, check role and auto-redirect
-  const { data: { session } } = await supabase.auth.getSession();
-  if (session?.user) {
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', session.user.id)
-      .single();
-
-    if (profile?.role === 'admin') {
-      window.location.href = 'admin.html';
-      return;
-    } else {
-      window.location.href = 'my-pickups.html';
-      return;
-    }
-  }
-
-  // UI Element References
+document.addEventListener('DOMContentLoaded', () => {
+  // DOM Elements
   const form = document.getElementById('auth-form');
   const emailInput = document.getElementById('auth-email');
   const passwordInput = document.getElementById('auth-password');
@@ -55,45 +31,65 @@ document.addEventListener('DOMContentLoaded', async () => {
   let selectedRole = 'user';
   const DEMO_ADMIN_KEY = 'ECOADMIN2025';
 
-  // Toggle Mode
+  // Alert Helpers (declared early so they are available immediately)
+  function showAlert(message, type = 'error') {
+    if (!alertBox) return;
+    alertBox.textContent = message;
+    alertBox.className = type === 'success' ? 'alert alert-success' : 'alert alert-error';
+    alertBox.style.display = 'flex';
+  }
+
+  function hideAlert() {
+    if (!alertBox) return;
+    alertBox.style.display = 'none';
+    alertBox.textContent = '';
+  }
+
+  // Toggle Mode (Sign In vs Create Account)
   function setMode(signUp) {
     isSignUp = signUp;
     hideAlert();
 
     if (isSignUp) {
-      tabRegister.style.background = 'white';
-      tabRegister.style.color = 'var(--slate-800)';
-      tabRegister.style.boxShadow = 'var(--shadow-sm)';
+      if (tabRegister) {
+        tabRegister.style.background = 'white';
+        tabRegister.style.color = 'var(--slate-800)';
+        tabRegister.style.boxShadow = 'var(--shadow-sm)';
+      }
+      if (tabLogin) {
+        tabLogin.style.background = 'transparent';
+        tabLogin.style.color = 'var(--slate-600)';
+        tabLogin.style.boxShadow = 'none';
+      }
 
-      tabLogin.style.background = 'transparent';
-      tabLogin.style.color = 'var(--slate-600)';
-      tabLogin.style.boxShadow = 'none';
+      if (headerIcon) headerIcon.textContent = '🌱';
+      if (titleEl) titleEl.textContent = 'Create EcoCycle Account';
+      if (subtitleEl) subtitleEl.textContent = 'Join our green community to schedule pickups and track your impact.';
+      if (submitBtn) submitBtn.textContent = 'Create My Account';
+      if (switchPrompt) switchPrompt.textContent = 'Already have an account?';
+      if (switchModeBtn) switchModeBtn.textContent = 'Sign In';
 
-      headerIcon.textContent = '🌱';
-      titleEl.textContent = 'Create EcoCycle Account';
-      subtitleEl.textContent = 'Join our green community to schedule pickups and track your impact.';
-      submitBtn.textContent = 'Create My Account';
-      switchPrompt.textContent = 'Already have an account?';
-      switchModeBtn.textContent = 'Sign In';
-
-      registerRoleSection.style.display = 'block';
+      if (registerRoleSection) registerRoleSection.style.display = 'block';
     } else {
-      tabLogin.style.background = 'white';
-      tabLogin.style.color = 'var(--slate-800)';
-      tabLogin.style.boxShadow = 'var(--shadow-sm)';
+      if (tabLogin) {
+        tabLogin.style.background = 'white';
+        tabLogin.style.color = 'var(--slate-800)';
+        tabLogin.style.boxShadow = 'var(--shadow-sm)';
+      }
+      if (tabRegister) {
+        tabRegister.style.background = 'transparent';
+        tabRegister.style.color = 'var(--slate-600)';
+        tabRegister.style.boxShadow = 'none';
+      }
 
-      tabRegister.style.background = 'transparent';
-      tabRegister.style.color = 'var(--slate-600)';
-      tabRegister.style.boxShadow = 'none';
+      if (headerIcon) headerIcon.textContent = '🔐';
+      if (titleEl) titleEl.textContent = 'Welcome Back';
+      if (subtitleEl) subtitleEl.textContent = 'Log in to manage your e-waste requests and locate centers.';
+      if (submitBtn) submitBtn.textContent = 'Sign In to EcoCycle';
+      if (switchPrompt) switchPrompt.textContent = "Don't have an account yet?";
+      if (switchModeBtn) switchModeBtn.textContent = 'Create Account';
 
-      headerIcon.textContent = '🔐';
-      titleEl.textContent = 'Welcome Back';
-      subtitleEl.textContent = 'Log in to manage your e-waste requests and locate centers.';
-      submitBtn.textContent = 'Sign In to EcoCycle';
-      switchPrompt.textContent = "Don't have an account yet?";
-      switchModeBtn.textContent = 'Create Account';
-
-      registerRoleSection.style.display = 'none';
+      if (registerRoleSection) registerRoleSection.style.display = 'none';
     }
   }
 
@@ -101,55 +97,98 @@ document.addEventListener('DOMContentLoaded', async () => {
   function setRole(role) {
     selectedRole = role;
     if (selectedRole === 'admin') {
-      roleAdminBtn.style.background = 'var(--accent)';
-      roleAdminBtn.style.color = 'white';
-      roleAdminBtn.classList.remove('btn-outline');
-
-      roleUserBtn.style.background = 'white';
-      roleUserBtn.style.color = 'var(--slate-700)';
-      roleUserBtn.classList.add('btn-outline');
-
-      adminPasscodeField.style.display = 'block';
+      if (roleAdminBtn) {
+        roleAdminBtn.style.background = 'var(--accent)';
+        roleAdminBtn.style.color = 'white';
+        roleAdminBtn.classList.remove('btn-outline');
+      }
+      if (roleUserBtn) {
+        roleUserBtn.style.background = 'white';
+        roleUserBtn.style.color = 'var(--slate-700)';
+        roleUserBtn.classList.add('btn-outline');
+      }
+      if (adminPasscodeField) adminPasscodeField.style.display = 'block';
     } else {
-      roleUserBtn.style.background = 'var(--primary)';
-      roleUserBtn.style.color = 'white';
-      roleUserBtn.classList.remove('btn-outline');
-
-      roleAdminBtn.style.background = 'white';
-      roleAdminBtn.style.color = 'var(--slate-700)';
-      roleAdminBtn.classList.add('btn-outline');
-
-      adminPasscodeField.style.display = 'none';
+      if (roleUserBtn) {
+        roleUserBtn.style.background = 'var(--primary)';
+        roleUserBtn.style.color = 'white';
+        roleUserBtn.classList.remove('btn-outline');
+      }
+      if (roleAdminBtn) {
+        roleAdminBtn.style.background = 'white';
+        roleAdminBtn.style.color = 'var(--slate-700)';
+        roleAdminBtn.classList.add('btn-outline');
+      }
+      if (adminPasscodeField) adminPasscodeField.style.display = 'none';
     }
   }
 
-  // Event Listeners for switching
-  tabLogin?.addEventListener('click', () => setMode(false));
-  tabRegister?.addEventListener('click', () => setMode(true));
-  switchModeBtn?.addEventListener('click', () => setMode(!isSignUp));
+  // Attach immediate click listeners
+  tabLogin?.addEventListener('click', (e) => {
+    e.preventDefault();
+    setMode(false);
+  });
 
-  roleUserBtn?.addEventListener('click', () => setRole('user'));
-  roleAdminBtn?.addEventListener('click', () => setRole('admin'));
+  tabRegister?.addEventListener('click', (e) => {
+    e.preventDefault();
+    setMode(true);
+  });
 
-  // Alert Helpers
-  function showAlert(message, type = 'error') {
-    alertBox.textContent = message;
-    alertBox.className = type === 'success' ? 'alert alert-success' : 'alert alert-error';
-    alertBox.style.display = 'flex';
-  }
+  switchModeBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    setMode(!isSignUp);
+  });
 
-  function hideAlert() {
-    alertBox.style.display = 'none';
-    alertBox.textContent = '';
-  }
+  roleUserBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    setRole('user');
+  });
 
-  // Form Submission
+  roleAdminBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    setRole('admin');
+  });
+
+  // Check if active session already exists in background
+  (async function checkExistingSession() {
+    try {
+      const client = window.ecocycle?.supabase;
+      if (!client) return;
+
+      const { data: { session } } = await client.auth.getSession();
+      if (session?.user) {
+        const { data: profile } = await client
+          .from('profiles')
+          .select('role')
+          .eq('id', session.user.id)
+          .single();
+
+        const role = profile?.role || 'user';
+        const destination = role === 'admin' ? 'admin.html' : 'my-pickups.html';
+
+        showAlert(`You are already signed in as ${session.user.email}. Redirecting...`, 'success');
+        setTimeout(() => {
+          window.location.href = destination;
+        }, 800);
+      }
+    } catch (e) {
+      console.warn('Session check warning:', e);
+    }
+  })();
+
+  // Handle Form Submission
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     hideAlert();
 
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
+    const client = window.ecocycle?.supabase;
+    if (!client) {
+      showAlert('Database service is connecting. Please wait 2 seconds and retry.', 'error');
+      return;
+    }
+
+    const email = emailInput ? emailInput.value.trim() : '';
+    const password = passwordInput ? passwordInput.value : '';
 
     if (!email || !password) {
       showAlert('Please enter both email and password.', 'error');
@@ -163,20 +202,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Admin passcode verification during registration
     if (isSignUp && selectedRole === 'admin') {
-      const passcode = adminPasscodeInput.value.trim();
+      const passcode = adminPasscodeInput ? adminPasscodeInput.value.trim() : '';
       if (passcode !== DEMO_ADMIN_KEY) {
         showAlert(`Invalid Admin Passcode! Use demo passcode: "${DEMO_ADMIN_KEY}" or register as a Regular User.`, 'error');
         return;
       }
     }
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Processing...';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Processing...';
+    }
 
     try {
       if (isSignUp) {
         // Register user via Supabase
-        const { data, error } = await supabase.auth.signUp({
+        const { data, error } = await client.auth.signUp({
           email,
           password,
           options: {
@@ -188,7 +229,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Ensure row in public.profiles table
         if (data?.user) {
-          await supabase.from('profiles').upsert({
+          await client.from('profiles').upsert({
             id: data.user.id,
             email: data.user.email,
             role: selectedRole
@@ -203,11 +244,11 @@ document.addEventListener('DOMContentLoaded', async () => {
           } else {
             window.location.href = 'my-pickups.html';
           }
-        }, 1200);
+        }, 1000);
 
       } else {
         // Sign In
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await client.auth.signInWithPassword({
           email,
           password
         });
@@ -215,7 +256,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (error) throw error;
 
         // Check user role
-        const { data: profile } = await supabase
+        const { data: profile } = await client
           .from('profiles')
           .select('role')
           .eq('id', data.user.id)
@@ -223,22 +264,28 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const role = profile?.role || 'user';
         const urlParams = new URLSearchParams(window.location.search);
-        const redirect = urlParams.get('redirect');
+        const redirectParam = urlParams.get('redirect');
 
-        if (role === 'admin') {
-          window.location.href = 'admin.html';
-        } else if (redirect) {
-          window.location.href = redirect;
-        } else {
-          window.location.href = 'my-pickups.html';
-        }
+        showAlert('Signed in successfully! Redirecting...', 'success');
+
+        setTimeout(() => {
+          if (role === 'admin') {
+            window.location.href = 'admin.html';
+          } else if (redirectParam) {
+            window.location.href = redirectParam;
+          } else {
+            window.location.href = 'my-pickups.html';
+          }
+        }, 800);
       }
     } catch (err) {
       console.error('Auth Error:', err);
       showAlert(err.message || 'Authentication failed. Please verify credentials.', 'error');
     } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = isSignUp ? 'Create My Account' : 'Sign In to EcoCycle';
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = isSignUp ? 'Create My Account' : 'Sign In to EcoCycle';
+      }
     }
   });
 });
