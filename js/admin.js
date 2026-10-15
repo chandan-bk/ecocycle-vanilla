@@ -243,21 +243,24 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (target) target.status = newStatus;
       renderPickups();
 
-      // Trigger EmailJS alert if service configured
-      const emailConfig = window.ecocycle?.EMAILJS_CONFIG;
-      if (window.emailjs && emailConfig?.serviceId && emailConfig?.templateId && target?.userEmail) {
-        window.emailjs.send(emailConfig.serviceId, emailConfig.templateId, {
-          to_email: target.userEmail,
-          pickup_id: target.id,
-          item_type: target.item_type,
+      // Trigger email alert via centralized helper
+      if (window.ecocycle?.sendEmail && target?.userEmail) {
+        window.ecocycle.sendEmail({
+          toEmail: target.userEmail,
+          pickupId: target.id,
+          itemType: target.item_type,
           quantity: target.quantity,
-          new_status: newStatus.toUpperCase(),
-          pickup_date: target.pickup_date,
-          pickup_address: target.address
-        }).catch(e => console.warn('Email dispatch notice:', e));
+          status: newStatus,
+          pickupDate: target.pickup_date,
+          address: target.address,
+        });
       }
 
-      showAlert(`Status updated to "${newStatus}"! Notification recorded.`);
+      showAlert(
+        target?.userEmail
+          ? `Status updated to "${newStatus}" & email alert dispatched to ${target.userEmail}!`
+          : `Status updated to "${newStatus}"!`
+      );
     } catch (err) {
       console.error('Error updating status:', err);
       showAlert(`Failed to update status: ${err.message}`, 'error');

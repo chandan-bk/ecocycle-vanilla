@@ -66,12 +66,27 @@ function setupFormHandler() {
 
       if (error) throw error;
 
+      // Dispatch booking confirmation email notification
+      if (user.email && window.ecocycle?.sendEmail) {
+        window.ecocycle.sendEmail({
+          toEmail: user.email,
+          itemType: itemType,
+          quantity: quantity,
+          status: 'pending',
+          pickupDate: pickupDate,
+          address: address,
+        });
+      }
+
       // Show success modal
       formCard.style.display = 'none';
       successModal.style.display = 'block';
       successSummary.innerHTML = `
         Your e-waste collection request for <strong>${quantity}x ${itemType}</strong> 
         on <strong>${pickupDate}</strong> has been logged with status <span class="badge badge-pending">Pending</span>.
+        <div style="margin-top:12px; font-size:0.85rem; color:var(--primary-dark); background:var(--primary-light); padding:10px; border-radius:8px;">
+          📧 A confirmation alert has been dispatched to <strong>${user.email}</strong>.
+        </div>
       `;
 
     } catch (err) {
