@@ -141,4 +141,5 @@ When presenting this project to your professor or examiner:
 
 ## 👥 Author
 - **Chandan B K** — 2nd Semester CSE Student
-- Project Repository: [ecocycle-vanilla](https://github.com/chandan-bk)
+- Project Repository: [chandan-bk/ecocycle-vanilla](https://github.com/chandan-bk/ecocycle-vanilla)
+
