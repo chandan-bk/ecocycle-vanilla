@@ -16,19 +16,22 @@
     <div class="container nav-container">
       <a href="index.html" class="brand">
         <div class="brand-icon">♻️</div>
-        <div class="brand-text">Eco<span>Cycle</span></div>
+        <div>
+          <div class="brand-text">Eco<span>Cycle</span></div>
+          <div style="font-size: 0.65rem; color: var(--slate-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: -3px;">E-Waste Recovery</div>
+        </div>
       </a>
 
       <button id="menu-toggle" class="menu-toggle">☰</button>
 
       <ul id="nav-links" class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="locator.html">Recycler Locator</a></li>
-        <li><a href="schedule.html">Schedule Pickup</a></li>
-        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html">My Pickups</a></li>
-        <li><a href="impact.html">Impact</a></li>
-        <li><a href="awareness.html">Awareness & Quiz</a></li>
-        <li id="nav-admin-link" style="display:none;"><a href="admin.html" style="color:var(--accent);">Admin Panel</a></li>
+        <li><a href="locator.html">📍 Recycler Locator</a></li>
+        <li><a href="schedule.html">📅 Schedule Pickup</a></li>
+        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html">📦 My Pickups</a></li>
+        <li><a href="impact.html">📊 Impact</a></li>
+        <li><a href="awareness.html">📖 Awareness & Quiz</a></li>
+        <li id="nav-admin-link" style="display:none;"><a href="admin.html" style="color:var(--accent);">🛡️ Admin Panel</a></li>
       </ul>
 
       <div id="nav-auth-container" class="nav-auth">
@@ -41,34 +44,43 @@
   <!-- Main Content -->
   <main>
     <!-- Hero Section -->
-    <section style="padding: 70px 0; background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%); border-bottom: 1px solid var(--slate-200); text-align: center;">
-      <div class="container" style="max-width: 800px;">
-        <span style="display:inline-block; padding: 6px 14px; background: #dcfce7; color: #166534; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; border-radius: 9999px; margin-bottom: 18px;">
-          🌱 Smart E-Waste Management & Recovery
+    <section style="padding: 70px 0 50px; background: linear-gradient(180deg, rgba(236, 253, 245, 0.7) 0%, #ffffff 50%, #f8fafc 100%); border-bottom: 1px solid var(--slate-200); text-align: center;">
+      <div class="container" style="max-width: 820px;">
+        <span style="display:inline-flex; align-items:center; gap:6px; padding: 6px 14px; background: #dcfce7; color: #166534; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; border-radius: 9999px; margin-bottom: 18px;">
+          <span>🌱</span> Smart E-Waste Recycling Initiative
         </span>
-        <h1 style="margin-bottom: 18px; font-size: 3rem; letter-spacing: -0.5px;">
-          Give Your Old Electronics A <span style="color: var(--primary); text-decoration: underline;">Second Life</span>.
+        <h1 style="margin-bottom: 20px; font-size: 3.2rem; letter-spacing: -0.8px; line-height: 1.15;">
+          Give Your Old Electronics A <span class="highlight-wavy">Second Life</span>.
         </h1>
-        <p style="font-size: 1.15rem; margin-bottom: 30px; line-height: 1.7;">
-          Schedule free doorstep e-waste pickups in Mandya and Bangalore or locate verified collection centers near you. Zero landfill waste, 100% compliant.
+        <p style="font-size: 1.2rem; margin-bottom: 32px; line-height: 1.7; color: var(--slate-600); font-weight: 400;">
+          Schedule free doorstep e-waste pickups or discover authorized recycling centers across your city. Zero landfill waste, 100% compliant and certified.
         </p>
+
+        <!-- CTAs -->
         <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-          <a href="schedule.html" class="btn btn-primary" style="padding: 14px 28px; font-size: 1rem;">
+          <a href="schedule.html" class="btn btn-primary" style="padding: 14px 30px; font-size: 1rem; border-radius: var(--radius-lg); box-shadow: 0 10px 15px -3px rgba(22, 163, 74, 0.25);">
             📅 Schedule Free Pickup
           </a>
-          <a href="locator.html" class="btn btn-outline" style="padding: 14px 28px; font-size: 1rem;">
+          <a href="locator.html" class="btn btn-outline" style="padding: 14px 30px; font-size: 1rem; border-radius: var(--radius-lg);">
             📍 Find Collection Centers
           </a>
+        </div>
+
+        <!-- Trust Badges (Matches React Home) -->
+        <div class="trust-row">
+          <div class="trust-item"><span class="icon">✓</span> Free Doorstep Pickups</div>
+          <div class="trust-item"><span class="icon">✓</span> CPCB Certified Recyclers</div>
+          <div class="trust-item"><span class="icon">✓</span> Zero Landfill Promise</div>
         </div>
       </div>
     </section>
 
-    <!-- 3 Steps -->
+    <!-- 3 Step Workflow -->
     <section style="padding: 70px 0;">
       <div class="container">
         <div style="text-align: center; max-width: 600px; margin: 0 auto 50px;">
           <h2>How EcoCycle Works</h2>
-          <p>Responsible recycling made transparent in three simple steps.</p>
+          <p style="margin-top: 6px;">Responsible recycling made transparent in three simple steps.</p>
         </div>
 
         <div class="grid grid-3">
@@ -78,7 +90,7 @@
             </div>
             <h3>Book A Pickup</h3>
             <p style="margin-top: 10px; font-size: 0.95rem;">
-              Select obsolete items—phones, laptops, cables, or appliances—and choose a convenient collection date.
+              Select your obsolete gadgets—laptops, phones, cables, or appliances—and set a convenient pickup date.
             </p>
           </div>
 
@@ -88,7 +100,7 @@
             </div>
             <h3>Verified Collection</h3>
             <p style="margin-top: 10px; font-size: 0.95rem;">
-              Our authorized team collects your gadgets right from your doorstep or at our local drop-off centers.
+              Our certified partner collects the items right from your doorstep or drop them at our verified drop points.
             </p>
           </div>
 
@@ -96,27 +108,75 @@
             <div style="width: 48px; height: 48px; background: var(--primary-light); color: var(--primary-dark); font-weight: 900; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 20px;">
               3
             </div>
-            <h3>Material Recovery</h3>
+            <h3>Safe Material Recovery</h3>
             <p style="margin-top: 10px; font-size: 0.95rem;">
-              Electronics are dismantled safely, extracting precious metals like gold and copper while preventing carbon emissions.
+              Electronics are dismantled safely, extracting precious metals like gold & copper while preventing carbon emissions.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Impact Teaser Banner -->
-    <section style="padding: 60px 0; background: var(--slate-900); color: white; border-radius: var(--radius-xl); margin: 0 20px;">
-      <div class="container" style="text-align: center; max-width: 700px;">
-        <span style="color: #4ade80; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
-          Environmental Impact
-        </span>
-        <h2 style="color: white; margin: 15px 0 20px; font-size: 2.2rem;">Every Device Recycled Prevents ~15 kg CO₂</h2>
-        <p style="color: var(--slate-200); margin-bottom: 30px;">
-          Recycling secondary metals requires up to 80% less energy than mining raw ores. Explore live community statistics and charts.
-        </p>
-        <a href="impact.html" class="btn btn-primary" style="padding: 14px 28px;">
-          📊 View Live Environmental Impact
+    <!-- Dark Feature Section (Matches React Home) -->
+    <section class="container">
+      <div class="dark-feature-section">
+        <div class="grid grid-2" style="align-items: center; gap: 40px;">
+          
+          <!-- Left Column -->
+          <div>
+            <span style="color: #4ade80; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
+              Why Responsible Disposal Matters
+            </span>
+            <h2 style="margin: 16px 0 18px;">Over 62 Million Metric Tonnes of E-Waste Generated Annually.</h2>
+            <p style="margin-bottom: 24px; font-size: 0.95rem; line-height: 1.7;">
+              Less than 22% is properly documented and recycled. Toxic heavy metals like Lead, Mercury, and Cadmium leach into our soil and groundwater when dumped casually into municipal bins.
+            </p>
+
+            <div style="margin-bottom: 24px;">
+              <div class="dark-feature-bullet">
+                <div class="dark-bullet-icon">⚡</div>
+                <div style="font-size: 0.9rem; color: #e2e8f0;">Recover up to 95% of rare earth materials and precious metals.</div>
+              </div>
+              <div class="dark-feature-bullet">
+                <div class="dark-bullet-icon">🛡️</div>
+                <div style="font-size: 0.9rem; color: #e2e8f0;">100% data sanitization and secure electronics demanufacturing.</div>
+              </div>
+              <div class="dark-feature-bullet">
+                <div class="dark-bullet-icon">🏆</div>
+                <div style="font-size: 0.9rem; color: #e2e8f0;">Track your personal and collective carbon offset on our Impact dashboard.</div>
+              </div>
+            </div>
+
+            <a href="awareness.html" style="display: inline-flex; align-items: center; gap: 6px; color: #4ade80; font-weight: 700; font-size: 0.92rem;">
+              Take the E-Waste Awareness Quiz <span>→</span>
+            </a>
+          </div>
+
+          <!-- Right Column: Teaser Card -->
+          <div class="impact-teaser-card">
+            <div style="width: 60px; height: 60px; background: rgba(16, 185, 129, 0.15); border-radius: 18px; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 16px;" class="icon-bounce">
+              ♻️
+            </div>
+            <h3 style="color: white; font-size: 1.6rem; margin-bottom: 14px;">Every Device Recycled Saves ~15 kg CO₂</h3>
+            <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin-bottom: 24px;">
+              Recycling raw materials requires up to 80% less energy than mining virgin ores. See live metrics of all pickups logged through EcoCycle.
+            </p>
+            <a href="impact.html" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 0.95rem;">
+              View Live Impact Dashboard
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Call To Action Banner -->
+    <section class="container">
+      <div class="cta-gradient-banner">
+        <h2>Ready to Clear Out Old Gadgets?</h2>
+        <p>Don't let dead phones, laptops, and cables sit in your drawers. Schedule your pickup in under 60 seconds.</p>
+        <a href="schedule.html" class="btn" style="background: white; color: var(--primary-dark); padding: 14px 32px; font-size: 1rem; box-shadow: var(--shadow-md);">
+          Get Started Now
         </a>
       </div>
     </section>

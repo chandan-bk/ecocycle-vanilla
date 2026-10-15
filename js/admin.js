@@ -153,15 +153,37 @@ document.addEventListener('DOMContentLoaded', async () => {
         year: 'numeric'
       });
 
+      // Get status badge display
+      let statusIcon = '⏳';
+      let statusClass = 'badge-pending';
+      if (p.status === 'collected') {
+        statusIcon = '✅';
+        statusClass = 'badge-collected';
+      } else if (p.status === 'scheduled') {
+        statusIcon = '🚚';
+        statusClass = 'badge-scheduled';
+      } else if (p.status === 'cancelled') {
+        statusIcon = '❌';
+        statusClass = 'badge-cancelled';
+      }
+
       return `
         <div class="card" style="padding: 22px; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
-              <div>
-                <h3 style="font-size: 1.15rem; margin-bottom: 2px;">${p.item_type}</h3>
-                <span style="font-size: 0.8rem; font-weight: 700; color: var(--slate-500);">Qty: ${p.quantity} Unit(s)</span>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 14px;">
+              <div style="display: flex; align-items: flex-start; gap: 10px;">
+                <div style="width: 38px; height: 38px; background: var(--primary-light); color: var(--primary-dark); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; shrink: 0;">
+                  📦
+                </div>
+                <div>
+                  <h3 style="font-size: 1.05rem; margin-bottom: 2px; color: var(--slate-900); font-weight: 700;">${p.item_type}</h3>
+                  <span style="font-size: 0.75rem; color: var(--slate-500);">Quantity: <strong style="color: var(--slate-700);">${p.quantity} unit(s)</strong></span>
+                </div>
               </div>
-              <span class="badge badge-${p.status}">${p.status}</span>
+              <span class="badge ${statusClass}">
+                <span>${statusIcon}</span>
+                <span style="text-transform: capitalize;">${p.status}</span>
+              </span>
             </div>
 
             <div style="font-size: 0.82rem; color: var(--slate-600); margin-bottom: 8px;">

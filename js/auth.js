@@ -6,6 +6,11 @@
 document.addEventListener('DOMContentLoaded', async () => {
   setupMobileMenu();
   await updateNavbarState();
+
+  // Listen to live auth changes (matching React Navbar)
+  window.ecocycle?.supabase?.auth.onAuthStateChange(async () => {
+    await updateNavbarState();
+  });
 });
 
 function setupMobileMenu() {
