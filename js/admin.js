@@ -168,15 +168,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
 
       return `
-        <div class="card" style="padding: 22px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="pickup-card">
           <div>
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 14px;">
-              <div style="display: flex; align-items: flex-start; gap: 10px;">
-                <div style="width: 38px; height: 38px; background: var(--primary-light); color: var(--primary-dark); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; shrink: 0;">
-                  📦
-                </div>
+            <div class="pickup-card-header" style="margin-bottom: 14px;">
+              <div style="display: flex; align-items: flex-start; gap: 12px;">
+                <div class="pickup-icon-box">📦</div>
                 <div>
-                  <h3 style="font-size: 1.05rem; margin-bottom: 2px; color: var(--slate-900); font-weight: 700;">${p.item_type}</h3>
+                  <h3 style="font-size: 1.05rem; margin-bottom: 2px; color: var(--slate-900); font-weight: 700; line-height: 1.25;">${p.item_type}</h3>
                   <span style="font-size: 0.75rem; color: var(--slate-500);">Quantity: <strong style="color: var(--slate-700);">${p.quantity} unit(s)</strong></span>
                 </div>
               </div>

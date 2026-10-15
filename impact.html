@@ -20,9 +20,9 @@
     <div class="container nav-container">
       <a href="index.html" class="brand">
         <div class="brand-icon">♻️</div>
-        <div>
+        <div class="brand-title">
           <div class="brand-text">Eco<span>Cycle</span></div>
-          <div style="font-size: 0.65rem; color: var(--slate-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: -3px;">E-Waste Recovery</div>
+          <div class="brand-subtitle">E-Waste Recovery</div>
         </div>
       </a>
 
@@ -47,47 +47,41 @@
     <div class="container">
       
       <!-- Page Header -->
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;">
-        <div>
+      <div class="page-header">
+        <div class="page-header-content">
           <h1>Real-Time Environmental Impact</h1>
-          <p style="margin-top: 5px;">Tracking carbon reduction and electronic materials recovered from landfills.</p>
+          <p>Tracking carbon reduction and electronic materials recovered from landfills.</p>
         </div>
-        <button id="refresh-stats-btn" class="btn btn-outline btn-sm">🔄 Refresh Analytics</button>
+        <div class="page-header-actions">
+          <button id="refresh-stats-btn" class="btn btn-outline btn-sm">🔄 Refresh Analytics</button>
+        </div>
       </div>
 
       <!-- KPI Cards Row -->
       <div class="grid grid-4" style="margin-bottom: 30px;">
         
-        <div class="card" style="padding: 22px;">
-          <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--slate-500); margin-bottom: 8px;">
-            Total Pickups
-          </div>
-          <div id="kpi-pickups" style="font-size: 2.2rem; font-weight: 900; color: var(--slate-900);">--</div>
-          <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 4px;">Collection requests logged</div>
+        <div class="kpi-card">
+          <div class="kpi-title">Total Pickups</div>
+          <div id="kpi-pickups" class="kpi-value" style="color: var(--slate-900);">--</div>
+          <div class="kpi-subtitle">Collection requests logged</div>
         </div>
 
-        <div class="card" style="padding: 22px;">
-          <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--slate-500); margin-bottom: 8px;">
-            Devices Recycled
-          </div>
-          <div id="kpi-items" style="font-size: 2.2rem; font-weight: 900; color: var(--primary);">--</div>
-          <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 4px;">Diverted from city landfills</div>
+        <div class="kpi-card">
+          <div class="kpi-title">Devices Recycled</div>
+          <div id="kpi-items" class="kpi-value" style="color: var(--primary);">--</div>
+          <div class="kpi-subtitle">Diverted from city landfills</div>
         </div>
 
-        <div class="card" style="padding: 22px;">
-          <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--slate-500); margin-bottom: 8px;">
-            CO₂ Prevented
-          </div>
-          <div id="kpi-co2" style="font-size: 2.2rem; font-weight: 900; color: var(--secondary);">--</div>
-          <div id="kpi-tonnes" style="font-size: 0.8rem; color: var(--secondary); font-weight: 600; margin-top: 4px;">-- Tonnes CO₂e</div>
+        <div class="kpi-card">
+          <div class="kpi-title">CO₂ Prevented</div>
+          <div id="kpi-co2" class="kpi-value" style="color: var(--secondary);">--</div>
+          <div id="kpi-tonnes" class="kpi-subtitle" style="color: var(--secondary); font-weight: 600;">-- Tonnes CO₂e</div>
         </div>
 
-        <div class="card" style="padding: 22px;">
-          <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--slate-500); margin-bottom: 8px;">
-            Tree Absorption Eq.
-          </div>
-          <div id="kpi-trees" style="font-size: 2.2rem; font-weight: 900; color: var(--accent);">--</div>
-          <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 4px;">Mature urban tree-years</div>
+        <div class="kpi-card">
+          <div class="kpi-title">Tree Absorption Eq.</div>
+          <div id="kpi-trees" class="kpi-value" style="color: var(--accent);">--</div>
+          <div class="kpi-subtitle">Mature urban tree-years</div>
         </div>
 
       </div>

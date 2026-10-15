@@ -125,25 +125,15 @@ function renderCenters() {
 
     // 2. Create Sidebar Card
     const card = document.createElement('div');
-    card.style.cssText = 'padding:12px; border:1px solid var(--slate-200); border-radius:12px; cursor:pointer; background:white; transition:all 0.15s ease;';
+    card.className = 'center-card';
     card.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
-        <strong style="font-size:0.9rem; color:var(--slate-800);">${center.name}</strong>
-        <span style="font-size:10px; background:var(--slate-100); padding:2px 6px; border-radius:99px; shrink:0;">${center.city}</span>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+        <strong style="font-size: 0.9rem; color: var(--slate-800);">${center.name}</strong>
+        <span style="font-size: 10px; background: var(--slate-100); padding: 2px 6px; border-radius: 99px; flex-shrink: 0; font-weight: 600;">${center.city}</span>
       </div>
-      <p style="font-size:0.75rem; color:var(--slate-500); margin:4px 0 6px;">📍 ${center.address}</p>
+      <p style="font-size: 0.75rem; color: var(--slate-500); margin: 2px 0 4px;">📍 ${center.address}</p>
       <div>${acceptsBadges}</div>
     `;
-
-    card.addEventListener('mouseenter', () => {
-      card.style.borderColor = 'var(--primary)';
-      card.style.background = '#f0fdf4';
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.borderColor = 'var(--slate-200)';
-      card.style.background = 'white';
-    });
 
     card.addEventListener('click', () => {
       map.flyTo([center.lat, center.lng], 15, { animate: true, duration: 1.2 });

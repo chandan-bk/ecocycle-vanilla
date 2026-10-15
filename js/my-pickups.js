@@ -83,38 +83,32 @@ function renderPickups() {
     }
 
     const card = document.createElement('div');
-    card.className = 'card';
-    card.style.display = 'flex';
-    card.style.flexDirection = 'column';
-    card.style.justifyContent = 'space-between';
-    card.style.transition = 'all 0.2s ease';
+    card.className = 'pickup-card';
 
     card.innerHTML = `
       <div>
-        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:14px;">
-          <div style="display:flex; align-items:flex-start; gap:10px;">
-            <div style="width:38px; height:38px; background:var(--primary-light); color:var(--primary-dark); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.15rem; shrink:0;">
-              📦
-            </div>
+        <div class="pickup-card-header" style="margin-bottom: 14px;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div class="pickup-icon-box">📦</div>
             <div>
-              <h3 style="font-size:1.05rem; color:var(--slate-900); font-weight:700;">${pickup.item_type}</h3>
-              <span style="font-size:0.75rem; color:var(--slate-500);">Quantity: <strong style="color:var(--slate-700);">${pickup.quantity} unit(s)</strong></span>
+              <h3 style="font-size: 1.05rem; color: var(--slate-900); font-weight: 700; line-height: 1.25; margin-bottom: 2px;">${pickup.item_type}</h3>
+              <span style="font-size: 0.75rem; color: var(--slate-500);">Quantity: <strong style="color: var(--slate-700);">${pickup.quantity} unit(s)</strong></span>
             </div>
           </div>
           <span class="badge ${statusClass}">
             <span>${statusIcon}</span>
-            <span style="text-transform:capitalize;">${pickup.status}</span>
+            <span style="text-transform: capitalize;">${pickup.status}</span>
           </span>
         </div>
 
-        <div style="border-top:1px solid var(--slate-100); padding-top:14px; font-size:0.85rem; color:var(--slate-600); display:flex; flex-direction:column; gap:8px;">
-          <div style="display:flex; align-items:center; gap:6px;">
+        <div style="border-top: 1px solid var(--slate-100); padding-top: 14px; font-size: 0.85rem; color: var(--slate-600); display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 6px;">
             <span>📅</span>
-            <span>Pickup Date: <strong style="color:var(--slate-800);">${formattedDate}</strong></span>
+            <span>Pickup Date: <strong style="color: var(--slate-800);">${formattedDate}</strong></span>
           </div>
-          <div style="display:flex; align-items:flex-start; gap:6px;">
-            <span style="margin-top:2px;">📍</span>
-            <span style="color:var(--slate-700); line-height:1.4;">${pickup.address}</span>
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <span style="margin-top: 2px;">📍</span>
+            <span style="color: var(--slate-700); line-height: 1.4;">${pickup.address}</span>
           </div>
         </div>
       </div>

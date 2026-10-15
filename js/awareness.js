@@ -109,10 +109,10 @@ function renderQuiz() {
 
     questionCard.innerHTML = `
       <div style="display:flex; align-items:flex-start; gap:10px; margin-bottom:14px;">
-        <span style="width:28px; height:28px; background:var(--primary); color:white; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.8rem; font-weight:800; shrink:0;">
+        <span style="width: 28px; height: 28px; background: var(--primary); color: white; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; flex-shrink: 0;">
           ${qIndex + 1}
         </span>
-        <h3 style="font-size:1.05rem; color:var(--slate-900); line-height:1.4;">${q.question}</h3>
+        <h3 style="font-size: 1.05rem; color: var(--slate-900); line-height: 1.4; margin-bottom: 0;">${q.question}</h3>
       </div>
       <div style="display:flex; flex-direction:column; gap:8px;">${optionsHtml}</div>
       ${isSubmitted ? `

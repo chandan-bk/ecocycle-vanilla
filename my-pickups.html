@@ -15,9 +15,9 @@
     <div class="container nav-container">
       <a href="index.html" class="brand">
         <div class="brand-icon">♻️</div>
-        <div>
+        <div class="brand-title">
           <div class="brand-text">Eco<span>Cycle</span></div>
-          <div style="font-size: 0.65rem; color: var(--slate-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: -3px;">E-Waste Recovery</div>
+          <div class="brand-subtitle">E-Waste Recovery</div>
         </div>
       </a>
 
@@ -42,19 +42,19 @@
     <div class="container">
       
       <!-- Page Header -->
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px;">
-        <div>
+      <div class="page-header">
+        <div class="page-header-content">
           <h1>My E-Waste Pickups</h1>
-          <p style="margin-top: 5px;">Track your scheduled doorstep collections and recycling status.</p>
+          <p>Track your scheduled doorstep collections and recycling status.</p>
         </div>
-        <div style="display: flex; gap: 10px;">
+        <div class="page-header-actions">
           <button id="refresh-btn" class="btn btn-outline btn-sm">🔄 Refresh</button>
           <a href="schedule.html" class="btn btn-primary btn-sm">+ New Pickup</a>
         </div>
       </div>
 
       <!-- Filter Tabs -->
-      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 25px; border-bottom: 1px solid var(--slate-200); padding-bottom: 15px;">
+      <div class="filter-tabs-bar">
         <button class="btn btn-sm btn-outline tab-btn active" data-status="all">All Requests</button>
         <button class="btn btn-sm btn-outline tab-btn" data-status="pending">Pending</button>
         <button class="btn btn-sm btn-outline tab-btn" data-status="scheduled">Scheduled</button>

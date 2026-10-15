@@ -56,9 +56,7 @@ async function updateNavbarState() {
       authContainer.innerHTML = `
         <div style="display:flex; align-items:center; gap:10px;">
           <div style="text-align:right;">
-            <div style="font-size:0.8rem; font-weight:700; color:var(--slate-800); max-width:140px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
-              ${user.email}
-            </div>
+            <div class="user-email-text">${user.email}</div>
             <span class="role-badge ${role === 'admin' ? 'admin' : ''}">${role}</span>
           </div>
           <button id="logout-btn" class="btn btn-outline btn-sm">Logout</button>
