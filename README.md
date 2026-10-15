@@ -7,6 +7,9 @@
 
 ## 🌟 Project Overview
 
+- 🌐 **Live Website**: [https://chandan-bk.github.io/ecocycle-vanilla/](https://chandan-bk.github.io/ecocycle-vanilla/)
+- 💻 **Source Code**: [https://github.com/chandan-bk/ecocycle-vanilla](https://github.com/chandan-bk/ecocycle-vanilla)
+
 **EcoCycle** is an end-to-end sustainable e-waste management portal developed for a 2nd-semester Computer Science & Engineering curriculum. It addresses the growing hazards of electronic waste by connecting citizens with verified recycling centers, offering doorstep pickup scheduling, calculating environmental impact metrics, and providing interactive educational quizzes.
 
 This standalone edition is engineered using **100% pure web standards**, demonstrating core software engineering principles, asynchronous JavaScript, DOM manipulation, RESTful cloud backend integration, and responsive web design without depending on heavy modern build tools or node_modules.
