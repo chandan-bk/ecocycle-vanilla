@@ -68,7 +68,7 @@ async function sendNotificationEmail({
     status_note: note,
     pickup_date: pickupDate || 'Scheduled date',
     pickup_address: address || 'Your address',
-    dashboard_url: 'https://chandan-bk.github.io/ecocycle-vanilla/my-pickups.html',
+    dashboard_url: 'https://ecocycle-vanilla.vercel.app/my-pickups.html',
   };
 
   try {
