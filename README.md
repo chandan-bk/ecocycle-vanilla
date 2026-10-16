@@ -187,7 +187,17 @@ The EmailJS template (`template_to9738m`) dynamically populates the following fi
 
 ---
 
-## 👥 Author
-- **Chandan B K** — 2nd Semester CSE Student
-- Project Repository: [chandan-bk/ecocycle-vanilla](https://github.com/chandan-bk/ecocycle-vanilla)
+## 👥 Project Team & Contributors
+- **Chandan B K** — Lead & Full-Stack Architect (2nd Sem CSE)
+- **Dhanush Gowda R** — Frontend & Leaflet GIS Specialist (2nd Sem CSE)
+- **Dore Prasad C K** — Backend & EmailJS Systems Engineer (2nd Sem CSE)
+- **Gowri Shankar S** — Data Analytics & Environmental Modeling (2nd Sem CSE)
+
+### 🏫 Academic & Program Details
+- **Department:** Department of Computer Science & Engineering
+- **Institution:** PES College of Engineering, Mandya
+- **Program:** 5-Day Skill Development Program · Web Development Foundations (12–16 Oct 2026)
+- **Collaboration:** ExcelR Edtech Pvt. Ltd., Bengaluru
+- **Project Repository:** [chandan-bk/ecocycle-vanilla](https://github.com/chandan-bk/ecocycle-vanilla)
+- **Live Presentation:** [ecocycle-vanilla.vercel.app/presentation.html](https://ecocycle-vanilla.vercel.app/presentation.html)
 
