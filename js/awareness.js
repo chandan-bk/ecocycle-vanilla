@@ -101,8 +101,8 @@ function renderQuiz() {
       optionsHtml += `
         <div class="quiz-option" data-q="${qIndex}" data-opt="${optIndex}" style="${optionStyle}">
           <span>${opt}</span>
-          ${isSubmitted && optIndex === q.correctAnswer ? '<span>✓</span>' : ''}
-          ${isSubmitted && isSelected && optIndex !== q.correctAnswer ? '<span>✗</span>' : ''}
+          ${isSubmitted && optIndex === q.correctAnswer ? '<i data-lucide="check" style="width:16px;height:16px;"></i>' : ''}
+          ${isSubmitted && isSelected && optIndex !== q.correctAnswer ? '<i data-lucide="x" style="width:16px;height:16px;"></i>' : ''}
         </div>
       `;
     });
@@ -117,13 +117,21 @@ function renderQuiz() {
       <div style="display:flex; flex-direction:column; gap:8px;">${optionsHtml}</div>
       ${isSubmitted ? `
         <div style="margin-top:12px; padding:10px 14px; background:white; border:1px solid var(--slate-200); border-radius:var(--radius-sm); font-size:0.8rem; color:var(--slate-600);">
-          <strong>💡 Explanation:</strong> ${q.explanation}
+          <div style="display:flex; align-items:center; gap:6px; font-weight:700; margin-bottom:4px; color:var(--slate-800);">
+            <i data-lucide="lightbulb" style="width:14px;height:14px;color:var(--accent);"></i>
+            <span>Explanation:</span>
+          </div>
+          <div>${q.explanation}</div>
         </div>
       ` : ''}
     `;
 
     container.appendChild(questionCard);
   });
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
 
   // Attach option click listeners
   if (!isSubmitted) {
@@ -165,16 +173,28 @@ function setupQuizHandler() {
       scoreBanner.style.background = '#dcfce7';
       scoreBanner.style.border = '1px solid #86efac';
       scoreBanner.style.color = '#14532d';
-      scoreBanner.innerHTML = `<h3>🌟 You Scored ${score} / 5!</h3><p style="margin-top:4px; font-size:0.9rem;">Outstanding! You are a certified EcoCycle E-Waste Champion!</p>`;
+      scoreBanner.innerHTML = `
+        <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:6px;">
+          <i data-lucide="award" style="width:24px;height:24px;color:#16a34a;"></i>
+          <h3 style="margin:0; font-size:1.3rem;">You Scored ${score} / 5!</h3>
+        </div>
+        <p style="margin:0; font-size:0.9rem;">Outstanding! You are a certified EcoCycle E-Waste Champion!</p>
+      `;
     } else {
       scoreBanner.style.background = '#fef3c7';
       scoreBanner.style.border = '1px solid #fde68a';
       scoreBanner.style.color = '#78350f';
-      scoreBanner.innerHTML = `<h3>👏 You Scored ${score} / 5!</h3><p style="margin-top:4px; font-size:0.9rem;">Good effort! Review the explanations above to brush up on safe disposal practices.</p>`;
+      scoreBanner.innerHTML = `
+        <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:6px;">
+          <i data-lucide="info" style="width:24px;height:24px;color:#d97706;"></i>
+          <h3 style="margin:0; font-size:1.3rem;">You Scored ${score} / 5!</h3>
+        </div>
+        <p style="margin:0; font-size:0.9rem;">Good effort! Review the explanations above to brush up on safe disposal practices.</p>
+      `;
     }
 
     submitBtn.style.display = 'none';
-    resetBtn.style.display = 'inline-block';
+    resetBtn.style.display = 'inline-flex';
     renderQuiz();
   });
 

@@ -153,17 +153,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         year: 'numeric'
       });
 
-      // Get status badge display
-      let statusIcon = '⏳';
+      // Get status badge display with Lucide icon
+      let statusIcon = '<i data-lucide="clock"></i>';
       let statusClass = 'badge-pending';
       if (p.status === 'collected') {
-        statusIcon = '✅';
+        statusIcon = '<i data-lucide="check-circle-2"></i>';
         statusClass = 'badge-collected';
       } else if (p.status === 'scheduled') {
-        statusIcon = '🚚';
+        statusIcon = '<i data-lucide="truck"></i>';
         statusClass = 'badge-scheduled';
       } else if (p.status === 'cancelled') {
-        statusIcon = '❌';
+        statusIcon = '<i data-lucide="x-circle"></i>';
         statusClass = 'badge-cancelled';
       }
 
@@ -172,28 +172,31 @@ document.addEventListener('DOMContentLoaded', async () => {
           <div>
             <div class="pickup-card-header" style="margin-bottom: 14px;">
               <div style="display: flex; align-items: flex-start; gap: 12px;">
-                <div class="pickup-icon-box">📦</div>
+                <div class="pickup-icon-box"><i data-lucide="package"></i></div>
                 <div>
                   <h3 style="font-size: 1.05rem; margin-bottom: 2px; color: var(--slate-900); font-weight: 700; line-height: 1.25;">${p.item_type}</h3>
                   <span style="font-size: 0.75rem; color: var(--slate-500);">Quantity: <strong style="color: var(--slate-700);">${p.quantity} unit(s)</strong></span>
                 </div>
               </div>
               <span class="badge ${statusClass}">
-                <span>${statusIcon}</span>
+                ${statusIcon}
                 <span style="text-transform: capitalize;">${p.status}</span>
               </span>
             </div>
 
-            <div style="font-size: 0.82rem; color: var(--slate-600); margin-bottom: 8px;">
-              <strong>👤 Customer:</strong> <span style="color: var(--slate-800);">${p.userEmail}</span>
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--slate-600); margin-bottom: 8px;">
+              <i data-lucide="user" style="width: 14px; height: 14px; color: var(--slate-500); flex-shrink: 0;"></i>
+              <span><strong>Customer:</strong> <span style="color: var(--slate-800);">${p.userEmail}</span></span>
             </div>
 
-            <div style="font-size: 0.82rem; color: var(--slate-600); margin-bottom: 8px;">
-              <strong>📅 Scheduled:</strong> ${formattedDate}
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--slate-600); margin-bottom: 8px;">
+              <i data-lucide="calendar" style="width: 14px; height: 14px; color: var(--slate-500); flex-shrink: 0;"></i>
+              <span><strong>Scheduled:</strong> ${formattedDate}</span>
             </div>
 
-            <div style="font-size: 0.82rem; color: var(--slate-600); margin-bottom: 12px;">
-              <strong>📍 Address:</strong> ${p.address}
+            <div style="display: flex; align-items: flex-start; gap: 6px; font-size: 0.82rem; color: var(--slate-600); margin-bottom: 12px;">
+              <i data-lucide="map-pin" style="width: 14px; height: 14px; color: var(--slate-500); flex-shrink: 0; margin-top: 2px;"></i>
+              <span><strong>Address:</strong> ${p.address}</span>
             </div>
 
             ${p.notes ? `
@@ -206,10 +209,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           <div style="padding-top: 14px; border-top: 1px solid var(--slate-200);">
             <label class="form-label" style="font-size: 0.7rem; margin-bottom: 4px;">Update Status:</label>
             <select class="form-select status-select" data-id="${p.id}" style="font-size: 0.82rem; padding: 6px 10px;">
-              <option value="pending" ${p.status === 'pending' ? 'selected' : ''}>⏳ Pending</option>
-              <option value="scheduled" ${p.status === 'scheduled' ? 'selected' : ''}>🚚 Scheduled</option>
-              <option value="collected" ${p.status === 'collected' ? 'selected' : ''}>✅ Collected</option>
-              <option value="cancelled" ${p.status === 'cancelled' ? 'selected' : ''}>❌ Cancelled</option>
+              <option value="pending" ${p.status === 'pending' ? 'selected' : ''}>Pending</option>
+              <option value="scheduled" ${p.status === 'scheduled' ? 'selected' : ''}>Scheduled</option>
+              <option value="collected" ${p.status === 'collected' ? 'selected' : ''}>Collected</option>
+              <option value="cancelled" ${p.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
             </select>
           </div>
         </div>
@@ -224,6 +227,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         await updatePickupStatus(pickupId, newStatus);
       });
     });
+
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
   }
 
   // 3. Update Pickup Status & Send Email Alert
@@ -322,8 +329,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             ${pillsHtml}
           </td>
           <td style="text-align: right; white-space: nowrap;">
-            <button class="btn btn-outline btn-sm edit-center-btn" data-id="${c.id}" style="padding: 4px 8px; margin-right: 4px;" title="Edit Center">✏️</button>
-            <button class="btn btn-danger btn-sm delete-center-btn" data-id="${c.id}" style="padding: 4px 8px;" title="Delete Center">🗑️</button>
+            <button class="btn btn-outline btn-sm edit-center-btn" data-id="${c.id}" style="padding: 6px 10px; margin-right: 4px;" title="Edit Center">
+              <i data-lucide="pencil" style="width: 14px; height: 14px;"></i>
+            </button>
+            <button class="btn btn-danger btn-sm delete-center-btn" data-id="${c.id}" style="padding: 6px 10px;" title="Delete Center">
+              <i data-lucide="trash-2" style="width: 14px; height: 14px;"></i>
+            </button>
           </td>
         </tr>
       `;
@@ -344,6 +355,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         deleteCenter(id);
       });
     });
+
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
   }
 
   // 6. Modal Open / Close Handlers

@@ -10,7 +10,7 @@
 - 🌐 **Live Website**: [https://ecocycle-vanilla.vercel.app/](https://ecocycle-vanilla.vercel.app/)
 - 💻 **Source Code**: [https://github.com/chandan-bk/ecocycle-vanilla](https://github.com/chandan-bk/ecocycle-vanilla)
 
-**EcoCycle** is an end-to-end sustainable e-waste management portal developed for a 2nd-semester Computer Science & Engineering curriculum. It addresses the growing hazards of electronic waste by connecting citizens with verified recycling centers, offering doorstep pickup scheduling, calculating environmental impact metrics, and providing interactive educational quizzes.
+**EcoCycle** is an end-to-end sustainable e-waste management portal developed for a 3rd-semester Computer Science & Engineering curriculum. It addresses the growing hazards of electronic waste by connecting citizens with verified recycling centers, offering doorstep pickup scheduling, calculating environmental impact metrics, and providing interactive educational quizzes.
 
 This standalone edition is engineered using **100% pure web standards**, demonstrating core software engineering principles, asynchronous JavaScript, DOM manipulation, RESTful cloud backend integration, and responsive web design without depending on heavy modern build tools or node_modules.
 
@@ -188,10 +188,10 @@ The EmailJS template (`template_to9738m`) dynamically populates the following fi
 ---
 
 ## 👥 Project Team & Contributors
-- **Chandan B K** — Lead & Full-Stack Architect (2nd Sem CSE)
-- **Dhanush Gowda R** — Frontend & Leaflet GIS Specialist (2nd Sem CSE)
-- **Dore Prasad C K** — Backend & EmailJS Systems Engineer (2nd Sem CSE)
-- **Gowri Shankar S** — Data Analytics & Environmental Modeling (2nd Sem CSE)
+- **Chandan B K** — Lead & Full-Stack Architect (3rd Sem CSE)
+- **Dhanush Gowda R** — Frontend & Leaflet GIS Specialist (3rd Sem CSE)
+- **Dore Prasad C K** — Backend & EmailJS Systems Engineer (3rd Sem CSE)
+- **Gowri Shankar S** — Data Analytics & Environmental Modeling (3rd Sem CSE)
 
 ### 🏫 Academic & Program Details
 - **Department:** Department of Computer Science & Engineering

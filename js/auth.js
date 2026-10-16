@@ -5,6 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
   setupMobileMenu();
+  if (window.lucide) window.lucide.createIcons();
   await updateNavbarState();
 
   // Listen to live auth changes (matching React Navbar)
@@ -28,7 +29,10 @@ async function updateNavbarState() {
   const adminNavLink = document.getElementById('nav-admin-link');
   const myPickupsNavLink = document.getElementById('nav-mypickups-link');
 
-  if (!window.ecocycle?.supabase) return;
+  if (!window.ecocycle?.supabase) {
+    if (window.lucide) window.lucide.createIcons();
+    return;
+  }
 
   const { data: { session } } = await window.ecocycle.supabase.auth.getSession();
   const user = session?.user;
@@ -57,9 +61,13 @@ async function updateNavbarState() {
         <div style="display:flex; align-items:center; gap:10px;">
           <div style="text-align:right;">
             <div class="user-email-text">${user.email}</div>
-            <span class="role-badge ${role === 'admin' ? 'admin' : ''}">${role}</span>
+            <span class="role-badge ${role === 'admin' ? 'admin' : ''}">
+              ${role === 'admin' ? '<i data-lucide="shield"></i> ' : ''}${role}
+            </span>
           </div>
-          <button id="logout-btn" class="btn btn-outline btn-sm">Logout</button>
+          <button id="logout-btn" class="btn btn-outline btn-sm">
+            <i data-lucide="log-out"></i> Logout
+          </button>
         </div>
       `;
 
@@ -75,9 +83,15 @@ async function updateNavbarState() {
 
     if (authContainer) {
       authContainer.innerHTML = `
-        <a href="login.html" class="btn btn-primary btn-sm">Login / Register</a>
+        <a href="login.html" class="btn btn-primary btn-sm">
+          <i data-lucide="log-in"></i> Login / Register
+        </a>
       `;
     }
+  }
+
+  if (window.lucide) {
+    window.lucide.createIcons();
   }
 }
 

@@ -62,10 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
         tabLogin.style.boxShadow = 'none';
       }
 
-      if (headerIcon) headerIcon.textContent = '🌱';
+      if (headerIcon) headerIcon.innerHTML = '<i data-lucide="sprout"></i>';
       if (titleEl) titleEl.textContent = 'Create EcoCycle Account';
       if (subtitleEl) subtitleEl.textContent = 'Join our green community to schedule pickups and track your impact.';
-      if (submitBtn) submitBtn.textContent = 'Create My Account';
+      if (submitBtn) submitBtn.innerHTML = '<i data-lucide="user-plus"></i> Create My Account';
       if (switchPrompt) switchPrompt.textContent = 'Already have an account?';
       if (switchModeBtn) switchModeBtn.textContent = 'Sign In';
 
@@ -82,14 +82,18 @@ document.addEventListener('DOMContentLoaded', () => {
         tabRegister.style.boxShadow = 'none';
       }
 
-      if (headerIcon) headerIcon.textContent = '🔐';
+      if (headerIcon) headerIcon.innerHTML = '<i data-lucide="lock"></i>';
       if (titleEl) titleEl.textContent = 'Welcome Back';
       if (subtitleEl) subtitleEl.textContent = 'Log in to manage your e-waste requests and locate centers.';
-      if (submitBtn) submitBtn.textContent = 'Sign In to EcoCycle';
+      if (submitBtn) submitBtn.innerHTML = '<i data-lucide="log-in"></i> Sign In to EcoCycle';
       if (switchPrompt) switchPrompt.textContent = "Don't have an account yet?";
       if (switchModeBtn) switchModeBtn.textContent = 'Create Account';
 
       if (registerRoleSection) registerRoleSection.style.display = 'none';
+    }
+
+    if (window.lucide) {
+      window.lucide.createIcons();
     }
   }
 
@@ -284,7 +288,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.textContent = isSignUp ? 'Create My Account' : 'Sign In to EcoCycle';
+        submitBtn.innerHTML = isSignUp
+          ? '<i data-lucide="user-plus"></i> Create My Account'
+          : '<i data-lucide="log-in"></i> Sign In to EcoCycle';
+        if (window.lucide) window.lucide.createIcons();
       }
     }
   });

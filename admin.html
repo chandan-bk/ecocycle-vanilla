@@ -6,6 +6,7 @@
   <title>Admin Dashboard - EcoCycle</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
@@ -15,23 +16,23 @@
   <header class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="brand">
-        <div class="brand-icon">♻️</div>
+        <div class="brand-icon"><i data-lucide="recycle"></i></div>
         <div class="brand-title">
           <div class="brand-text">Eco<span>Cycle</span></div>
           <div class="brand-subtitle">E-Waste Recovery</div>
         </div>
       </a>
 
-      <button id="menu-toggle" class="menu-toggle">☰</button>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Navigation"><i data-lucide="menu"></i></button>
 
       <ul id="nav-links" class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="locator.html">📍 Recycler Locator</a></li>
-        <li><a href="schedule.html">📅 Schedule Pickup</a></li>
-        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html">📦 My Pickups</a></li>
-        <li><a href="impact.html">📊 Impact</a></li>
-        <li><a href="awareness.html">📖 Awareness & Quiz</a></li>
-        <li id="nav-admin-link"><a href="admin.html" class="active" style="color:var(--accent);">🛡️ Admin Panel</a></li>
+        <li><a href="index.html"><i data-lucide="recycle"></i> Home</a></li>
+        <li><a href="locator.html"><i data-lucide="map-pin"></i> Recycler Locator</a></li>
+        <li><a href="schedule.html"><i data-lucide="calendar"></i> Schedule Pickup</a></li>
+        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html"><i data-lucide="package"></i> My Pickups</a></li>
+        <li><a href="impact.html"><i data-lucide="bar-chart-3"></i> Impact</a></li>
+        <li><a href="awareness.html"><i data-lucide="book-open"></i> Awareness & Quiz</a></li>
+        <li id="nav-admin-link"><a href="admin.html" class="active" style="color:var(--accent);"><i data-lucide="shield"></i> Admin Panel</a></li>
       </ul>
 
       <div id="nav-auth-container" class="nav-auth"></div>
@@ -45,14 +46,16 @@
       <!-- Admin Page Header -->
       <div class="page-header">
         <div class="page-header-content">
-          <span class="role-badge admin" style="margin-bottom: 8px; display: inline-block;">🛡️ Administrative Operations</span>
+          <span class="role-badge admin" style="margin-bottom: 8px; display: inline-flex; align-items: center; gap: 6px;">
+            <i data-lucide="shield" style="width:14px;height:14px;"></i> Administrative Operations
+          </span>
           <h1>E-Waste Operations Portal</h1>
           <p>Oversee customer doorstep pickups and manage verified collection centers.</p>
         </div>
 
         <div class="page-header-actions">
-          <button id="add-center-btn" class="btn btn-primary btn-sm" style="display: none;">+ Add New Center</button>
-          <button id="refresh-data-btn" class="btn btn-outline btn-sm">🔄 Refresh Data</button>
+          <button id="add-center-btn" class="btn btn-primary btn-sm" style="display: none;"><i data-lucide="plus"></i> Add New Center</button>
+          <button id="refresh-data-btn" class="btn btn-outline btn-sm"><i data-lucide="rotate-cw"></i> Refresh Data</button>
         </div>
       </div>
 
@@ -62,10 +65,10 @@
       <!-- Navigation Tabs -->
       <div class="tabs-bar">
         <button id="tab-pickups-btn" class="tab-btn active">
-          📦 All Pickups (<span id="pickups-count">0</span>)
+          <i data-lucide="package"></i> All Pickups (<span id="pickups-count">0</span>)
         </button>
         <button id="tab-centers-btn" class="tab-btn">
-          📍 Collection Centers (<span id="centers-count">0</span>)
+          <i data-lucide="map-pin"></i> Collection Centers (<span id="centers-count">0</span>)
         </button>
       </div>
 

@@ -17,7 +17,7 @@ const CITY_COORDINATES = {
 // Custom Eco Marker Icon
 const ecoIcon = L.divIcon({
   className: 'custom-eco-pin',
-  html: `<div class="custom-map-marker"><span>♻️</span></div>`,
+  html: `<div class="custom-map-marker"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-recycle"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"/><path d="m14 16-3 3 3 3"/><path d="M8.293 13.596 5.5 9.5 8.7 3.9"/><path d="m15.5 9.5 3.2 5.6"/><path d="m9 6 3-3-3-3"/></svg></div>`,
   iconSize: [34, 34],
   iconAnchor: [17, 34],
   popupAnchor: [0, -30],
@@ -131,7 +131,10 @@ function renderCenters() {
         <strong style="font-size: 0.9rem; color: var(--slate-800);">${center.name}</strong>
         <span style="font-size: 10px; background: var(--slate-100); padding: 2px 6px; border-radius: 99px; flex-shrink: 0; font-weight: 600;">${center.city}</span>
       </div>
-      <p style="font-size: 0.75rem; color: var(--slate-500); margin: 2px 0 4px;">📍 ${center.address}</p>
+      <p style="font-size: 0.75rem; color: var(--slate-500); margin: 2px 0 4px; display: flex; align-items: center; gap: 4px;">
+        <i data-lucide="map-pin" style="width:12px;height:12px;color:var(--primary);flex-shrink:0;"></i>
+        <span>${center.address}</span>
+      </p>
       <div>${acceptsBadges}</div>
     `;
 
@@ -142,6 +145,10 @@ function renderCenters() {
 
     listEl.appendChild(card);
   });
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
 }
 
 function setupEventListeners() {

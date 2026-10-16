@@ -7,6 +7,9 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
   <link rel="stylesheet" href="css/style.css">
   
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
   <!-- Leaflet CSS & JS via Official CDN -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -20,23 +23,23 @@
   <header class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="brand">
-        <div class="brand-icon">♻️</div>
+        <div class="brand-icon"><i data-lucide="recycle"></i></div>
         <div class="brand-title">
           <div class="brand-text">Eco<span>Cycle</span></div>
           <div class="brand-subtitle">E-Waste Recovery</div>
         </div>
       </a>
 
-      <button id="menu-toggle" class="menu-toggle">☰</button>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Navigation"><i data-lucide="menu"></i></button>
 
       <ul id="nav-links" class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="locator.html" class="active">📍 Recycler Locator</a></li>
-        <li><a href="schedule.html">📅 Schedule Pickup</a></li>
-        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html">📦 My Pickups</a></li>
-        <li><a href="impact.html">📊 Impact</a></li>
-        <li><a href="awareness.html">📖 Awareness & Quiz</a></li>
-        <li id="nav-admin-link" style="display:none;"><a href="admin.html" style="color:var(--accent);">🛡️ Admin Panel</a></li>
+        <li><a href="index.html"><i data-lucide="recycle"></i> Home</a></li>
+        <li><a href="locator.html" class="active"><i data-lucide="map-pin"></i> Recycler Locator</a></li>
+        <li><a href="schedule.html"><i data-lucide="calendar"></i> Schedule Pickup</a></li>
+        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html"><i data-lucide="package"></i> My Pickups</a></li>
+        <li><a href="impact.html"><i data-lucide="bar-chart-3"></i> Impact</a></li>
+        <li><a href="awareness.html"><i data-lucide="book-open"></i> Awareness & Quiz</a></li>
+        <li id="nav-admin-link" style="display:none;"><a href="admin.html" style="color:var(--accent);"><i data-lucide="shield"></i> Admin Panel</a></li>
       </ul>
 
       <div id="nav-auth-container" class="nav-auth"></div>
@@ -54,7 +57,7 @@
           <p>Find authorized e-waste drop-off stations across Mandya and Bangalore.</p>
         </div>
         <div class="page-header-actions">
-          <button id="refresh-btn" class="btn btn-outline btn-sm">🔄 Refresh Locations</button>
+          <button id="refresh-btn" class="btn btn-outline btn-sm"><i data-lucide="rotate-cw"></i> Refresh Locations</button>
         </div>
       </div>
 

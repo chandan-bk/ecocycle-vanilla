@@ -6,6 +6,7 @@
   <title>Awareness & Quiz - EcoCycle</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -14,23 +15,23 @@
   <header class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="brand">
-        <div class="brand-icon">♻️</div>
+        <div class="brand-icon"><i data-lucide="recycle"></i></div>
         <div class="brand-title">
           <div class="brand-text">Eco<span>Cycle</span></div>
           <div class="brand-subtitle">E-Waste Recovery</div>
         </div>
       </a>
 
-      <button id="menu-toggle" class="menu-toggle">☰</button>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Navigation"><i data-lucide="menu"></i></button>
 
       <ul id="nav-links" class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="locator.html">📍 Recycler Locator</a></li>
-        <li><a href="schedule.html">📅 Schedule Pickup</a></li>
-        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html">📦 My Pickups</a></li>
-        <li><a href="impact.html">📊 Impact</a></li>
-        <li><a href="awareness.html" class="active">📖 Awareness & Quiz</a></li>
-        <li id="nav-admin-link" style="display:none;"><a href="admin.html" style="color:var(--accent);">🛡️ Admin Panel</a></li>
+        <li><a href="index.html"><i data-lucide="recycle"></i> Home</a></li>
+        <li><a href="locator.html"><i data-lucide="map-pin"></i> Recycler Locator</a></li>
+        <li><a href="schedule.html"><i data-lucide="calendar"></i> Schedule Pickup</a></li>
+        <li id="nav-mypickups-link" style="display:none;"><a href="my-pickups.html"><i data-lucide="package"></i> My Pickups</a></li>
+        <li><a href="impact.html"><i data-lucide="bar-chart-3"></i> Impact</a></li>
+        <li><a href="awareness.html" class="active"><i data-lucide="book-open"></i> Awareness & Quiz</a></li>
+        <li id="nav-admin-link" style="display:none;"><a href="admin.html" style="color:var(--accent);"><i data-lucide="shield"></i> Admin Panel</a></li>
       </ul>
 
       <div id="nav-auth-container" class="nav-auth"></div>
@@ -43,8 +44,8 @@
       
       <!-- Page Header -->
       <div class="page-header-center">
-        <span style="display:inline-block; padding: 4px 12px; background: #dcfce7; color: #166534; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; border-radius: 9999px; margin-bottom: 12px;">
-          📚 Educational Literacy Guide
+        <span style="display:inline-flex; align-items:center; gap:6px; padding: 4px 12px; background: #dcfce7; color: #166534; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; border-radius: 9999px; margin-bottom: 12px;">
+          <i data-lucide="book-open" style="width:14px;height:14px;"></i> Educational Literacy Guide
         </span>
         <h1>What Counts As E-Waste & Why It Matters</h1>
         <p>Electronics represent only 2% of garbage volume, but 70% of toxic landfill hazards.</p>
@@ -54,7 +55,9 @@
       <div class="grid grid-2" style="margin-bottom: 40px;">
         
         <div class="card" style="background: #f0fdf4; border-color: #bbf7d0;">
-          <h3 style="color: #14532d; margin-bottom: 15px;">✓ What Counts As E-Waste?</h3>
+          <h3 style="color: #14532d; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="check-circle-2" style="width: 20px; height: 20px; color: #16a34a;"></i> What Counts As E-Waste?
+          </h3>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: #166534;">
             <li><strong>• IT & Telecom:</strong> Laptops, PCs, monitors, smartphones, chargers, cables.</li>
             <li><strong>• Consumer Electronics:</strong> TVs, stereos, gaming consoles, headphones.</li>
@@ -64,7 +67,9 @@
         </div>
 
         <div class="card" style="background: #fef2f2; border-color: #fecaca;">
-          <h3 style="color: #7f1d1d; margin-bottom: 15px;">⚠️ Toxic Substances Inside</h3>
+          <h3 style="color: #7f1d1d; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="alert-triangle" style="width: 20px; height: 20px; color: #dc2626;"></i> Toxic Substances Inside
+          </h3>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: #991b1b;">
             <li><strong>• Lead (Pb):</strong> Found in solder and CRT tubes. Known neurotoxin affecting brain health.</li>
             <li><strong>• Mercury (Hg):</strong> In display backlights and switches. Leaches into drinking water.</li>
@@ -81,7 +86,7 @@
             <span style="font-size: 0.75rem; font-weight: 800; color: var(--primary); text-transform: uppercase;">Interactive Challenge</span>
             <h2 style="font-size: 1.6rem; margin-top: 4px;">The 5-Question E-Waste Quiz</h2>
           </div>
-          <button id="reset-quiz-btn" class="btn btn-outline btn-sm" style="display: none;">Retake Quiz</button>
+          <button id="reset-quiz-btn" class="btn btn-outline btn-sm" style="display: none;"><i data-lucide="rotate-cw"></i> Retake Quiz</button>
         </div>
 
         <div id="quiz-score-banner" style="display: none; padding: 20px; border-radius: var(--radius-lg); text-align: center; margin-bottom: 25px;"></div>
@@ -91,7 +96,7 @@
 
           <div style="text-align: center; margin-top: 30px;">
             <button type="submit" id="submit-quiz-btn" class="btn btn-primary" style="padding: 12px 28px;">
-              Submit Answers & View Score
+              <i data-lucide="check-circle"></i> Submit Answers & View Score
             </button>
           </div>
         </form>

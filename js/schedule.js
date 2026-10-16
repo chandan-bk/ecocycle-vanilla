@@ -84,16 +84,20 @@ function setupFormHandler() {
       successSummary.innerHTML = `
         Your e-waste collection request for <strong>${quantity}x ${itemType}</strong> 
         on <strong>${pickupDate}</strong> has been logged with status <span class="badge badge-pending">Pending</span>.
-        <div style="margin-top:12px; font-size:0.85rem; color:var(--primary-dark); background:var(--primary-light); padding:10px; border-radius:8px;">
-          📧 A confirmation alert has been dispatched to <strong>${user.email}</strong>.
+        <div style="margin-top:12px; font-size:0.85rem; color:var(--primary-dark); background:var(--primary-light); padding:10px; border-radius:8px; display:flex; align-items:center; gap:8px;">
+          <i data-lucide="mail" style="width:16px;height:16px;flex-shrink:0;"></i>
+          <span>A confirmation alert has been dispatched to <strong>${user.email}</strong>.</span>
         </div>
       `;
+
+      if (window.lucide) window.lucide.createIcons();
 
     } catch (err) {
       console.error('Error submitting pickup:', err);
       showAlert(err.message || 'Failed to schedule pickup. Please try again.', 'error');
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Confirm & Schedule Pickup';
+      submitBtn.innerHTML = '<i data-lucide="send"></i> Confirm & Schedule Pickup';
+      if (window.lucide) window.lucide.createIcons();
     }
   });
 
@@ -103,7 +107,8 @@ function setupFormHandler() {
     successModal.style.display = 'none';
     formCard.style.display = 'block';
     submitBtn.disabled = false;
-    submitBtn.textContent = 'Confirm & Schedule Pickup';
+    submitBtn.innerHTML = '<i data-lucide="send"></i> Confirm & Schedule Pickup';
+    if (window.lucide) window.lucide.createIcons();
   });
 }
 
