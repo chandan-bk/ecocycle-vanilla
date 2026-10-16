@@ -10,6 +10,8 @@
 - 🌐 **Live Website**: [https://ecocycle-vanilla.vercel.app/](https://ecocycle-vanilla.vercel.app/)
 - 💻 **Source Code**: [https://github.com/chandan-bk/ecocycle-vanilla](https://github.com/chandan-bk/ecocycle-vanilla)
 - ⚛️ **React Edition**: [https://ecocycle-beryl.vercel.app/](https://ecocycle-beryl.vercel.app/) ([GitHub](https://github.com/chandan-bk/ecocycle))
+- 📊 **PowerPoint Presentation (.pptx)**: [Download EcoCycle_Project_Presentation.pptx](EcoCycle_Project_Presentation.pptx) ([Raw GitHub Download](https://github.com/chandan-bk/ecocycle-vanilla/raw/main/EcoCycle_Project_Presentation.pptx))
+- 📽️ **Interactive Web Presentation**: [https://ecocycle-vanilla.vercel.app/presentation.html](https://ecocycle-vanilla.vercel.app/presentation.html)
 
 **EcoCycle** is an end-to-end sustainable e-waste management portal developed for a 3rd-semester Computer Science & Engineering curriculum. It addresses the growing hazards of electronic waste by connecting citizens with verified recycling centers, offering doorstep pickup scheduling, calculating environmental impact metrics, and providing interactive educational quizzes.
 
@@ -200,5 +202,6 @@ The EmailJS template (`template_to9738m`) dynamically populates the following fi
 - **Program:** 5-Day Skill Development Program · Web Development Foundations (12–16 Oct 2026)
 - **Collaboration:** ExcelR Edtech Pvt. Ltd., Bengaluru
 - **Project Repository:** [chandan-bk/ecocycle-vanilla](https://github.com/chandan-bk/ecocycle-vanilla)
-- **Live Presentation:** [ecocycle-vanilla.vercel.app/presentation.html](https://ecocycle-vanilla.vercel.app/presentation.html)
+- **PowerPoint Presentation:** [EcoCycle_Project_Presentation.pptx](EcoCycle_Project_Presentation.pptx)
+- **Live Presentation (HTML):** [ecocycle-vanilla.vercel.app/presentation.html](https://ecocycle-vanilla.vercel.app/presentation.html)
 
