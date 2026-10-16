@@ -19,6 +19,23 @@ This standalone edition is engineered using **100% pure web standards**, demonst
 
 ---
 
+## 🏛️ Operational Philosophy: Civic Non-Profit Aggregator vs Commercial Buyback
+
+A foundational design principle of EcoCycle is its **Non-Profit Civic Utility & Community Aggregator model**:
+
+| Dimension | 🌿 EcoCycle (Civic NGO Model) | 💼 Commercial Buyback (Cashify / Scrap Dealers) |
+| :--- | :--- | :--- |
+| **Mission & Priority** | **Environmental safety & public health** (UN SDG 12) | Corporate financial profit & gadget resale |
+| **Accepted Items** | **Broken, obsolete, non-working, dead electronics & hazardous waste** | Working or semi-working high-value smartphones & laptops |
+| **Financial Cost** | **₹0 Free Service** (Citizens surrender waste for safe disposal) | Cash payments based on device resale condition |
+| **The "Last-Mile" Problem** | **Solved**: State-certified recyclers only accept bulk industrial metric tons from corporations. EcoCycle aggregates small household pickups and delivers them in bulk to authorized facilities. | **Ignored**: Cherry-picks lucrative devices; dumps hazardous plastics, lead glass, and toxic cells. |
+| **Disposal Route** | **CPCB/KSPCB certified recycling plants** for hydrometallurgical recovery and toxic neutralization. | Secondary markets or informal unorganized scrap burning. |
+
+> **FAQ: Why doesn't EcoCycle pay citizens for e-waste?**  
+> Commercial platforms only want gadgets they can resell for a markup. EcoCycle is engineered for the 80%+ of electronic waste that has zero resale value (burnt motherboards, shattered displays, swollen batteries, tangled cables). Our mission is to ensure these hazardous toxins never enter municipal landfills, ground aquifers, or informal acid baths.
+
+---
+
 ## 🚀 Quick Start (Zero Installation Required)
 
 ### Method 1: Direct File Launch (Easiest)
