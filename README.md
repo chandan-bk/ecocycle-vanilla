@@ -9,6 +9,7 @@
 
 - 🌐 **Live Website**: [https://ecocycle-vanilla.vercel.app/](https://ecocycle-vanilla.vercel.app/)
 - 💻 **Source Code**: [https://github.com/chandan-bk/ecocycle-vanilla](https://github.com/chandan-bk/ecocycle-vanilla)
+- ⚛️ **React Edition**: [https://ecocycle-beryl.vercel.app/](https://ecocycle-beryl.vercel.app/) ([GitHub](https://github.com/chandan-bk/ecocycle))
 
 **EcoCycle** is an end-to-end sustainable e-waste management portal developed for a 3rd-semester Computer Science & Engineering curriculum. It addresses the growing hazards of electronic waste by connecting citizens with verified recycling centers, offering doorstep pickup scheduling, calculating environmental impact metrics, and providing interactive educational quizzes.
 
