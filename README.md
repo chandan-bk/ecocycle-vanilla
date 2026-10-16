@@ -61,7 +61,7 @@ ecocycle-vanilla/
 │   ├── awareness.js      # Quiz question engine with score calculator & explanations
 │   ├── login.js          # Supabase Auth controller with demo passcode support
 │   └── admin.js          # Admin dashboard: pickup status updater & center CRUD modal
-└── README.md             # Complete project guide and viva documentation
+└── README.md             # Complete project documentation and architecture guide
 ```
 
 ---
@@ -165,7 +165,7 @@ The EmailJS template (`template_to9738m`) dynamically populates the following fi
 | `pickup_address` | String | Doorstep address captured during booking |
 | `dashboard_url` | String | Direct URL (`https://ecocycle-vanilla.vercel.app/my-pickups.html`) |
 
-### 4. How to Test Real Email Delivery During Viva / Evaluation
+### 4. How to Test Real Email Delivery Live
 1. Open [`https://ecocycle-vanilla.vercel.app/`](https://ecocycle-vanilla.vercel.app/) and sign in with your email.
 2. Go to **Schedule Pickup**, fill out an electronic category, select tomorrow's date, and submit.
 3. Open Developer Tools (`F12` → **Console**):
@@ -177,14 +177,13 @@ The EmailJS template (`template_to9738m`) dynamically populates the following fi
 
 ---
 
-## 🎓 College Viva / Evaluation Talking Points
+## 💡 Key Architectural Highlights
 
-When presenting this project to your professor or examiner:
-1. **Separation of Concerns**: Each page has a dedicated HTML file and corresponding JS controller, maximizing modularity and readability.
-2. **Zero Framework Overhead**: Demonstrates strong fundamental understanding of browser APIs, DOM tree navigation, and CSS specificity without relying on black-box frameworks.
-3. **Responsive Web Design**: All pages are mobile-responsive using CSS media queries and flexible Grid/Flexbox layouts.
-4. **Cloud Integration via CDN**: Demonstrates how modern cloud databases (Supabase PostgreSQL) can be queried securely from client-side scripts using Row Level Security (RLS) and JSON web tokens (JWT).
-5. **Real-World Impact**: Promotes SDG 12 (Responsible Consumption and Production) by encouraging proper disposal of hazardous electronic components.
+1. **Separation of Concerns**: Each page has a dedicated HTML file and corresponding JS controller, maximizing modularity, testability, and code readability.
+2. **Zero Framework Overhead**: Demonstrates strong fundamental mastery of native browser APIs, DOM manipulation, asynchronous JavaScript, and CSS specificity without relying on third-party build tools.
+3. **Responsive Web Design**: All pages are mobile-responsive using custom CSS media queries, flexible Grid/Flexbox layouts, and a dedicated mobile navigation drawer.
+4. **Secure Cloud Integration**: Demonstrates how modern cloud databases (Supabase PostgreSQL) can be queried securely from client-side scripts using Row Level Security (RLS) and JSON web tokens (JWT).
+5. **Real-World Environmental Impact**: Promotes circular economy principles and SDG 12 (Responsible Consumption and Production) by encouraging proper disposal of hazardous electronic components.
 
 ---
 
